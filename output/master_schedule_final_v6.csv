@@ -1,0 +1,36 @@
+﻿Day,Period,9-A,9-B,9-C,10-A,10-B,10-C,10-EAL-A,10-EAL-B,10-EAL-C,11-A,11-B,12-A,12-B
+Monday,1,English,English,English,English,Phys&Bio,World History,,,,Group 1 AP,Group 1 AP,Group 1 AP,Group 1 AP
+Monday,2,PE,Algebra,Chemistry,Psych&Geo,Psych&Geo,Psych&Geo,EAL,EAL,EAL,Group 1 AP,Group 1 AP,Group 1 AP,Group 1 AP
+Monday,3,Social,Chemistry,Psychology,Pre-Cal,World History,English,,,,Cal-ABBC,Literature,Spanish,PE
+Monday,4,Biology,PE,Social,Micro-Econ,English,Spanish,,,,Group 3 AP,Group 3 AP,Group 3 AP,Group 3 AP
+Monday,5,Physics,Biology,Algebra,Chemistry,Micro-Econ,PE,,,,Group 3 AP,Group 3 AP,Group 3 AP,Group 3 AP
+Monday,6,Psychology,Social,Physics,Micro-Econ,English,Pre-Cal,,,,PE,English,,Spanish
+Tuesday,1,Physics,Algebra,Social,Pre-Cal,Micro-Econ,Art,,,,Literature,PE,Spanish,
+Tuesday,2,Biology,PE,Algebra,Spanish,Phys&Bio,Chemistry,,,,English,Cal-ABBC,AP Seminar,AP Seminar
+Tuesday,3,Chemistry,Social,Biology,Psych&Geo,Psych&Geo,Psych&Geo,EAL,EAL,EAL,Art,Spanish,BC-Stats,BC-Stats
+Tuesday,4,Art,Physics,Psychology,Pre-Cal,Micro-Econ,English,,,,Spanish,English,BC-Stats,BC-Stats
+Tuesday,5,English,English,English,English,Chemistry,World History,,,,Group 1 AP,Group 1 AP,Group 1 AP,Group 1 AP
+Tuesday,6,Social,Psychology,Art,Phys&Bio,Pre-Cal,Phys&Bio,,,EAL,Group 2 AP,Group 2 AP,Group 2 AP,Group 2 AP
+Tuesday,7,,,,,,,,,,Cal-ABBC,Literature,PE,PE
+Tuesday,8,,,,,,,,,,Cal-ABBC,English,Counseling,Counseling
+Wednesday,1,Chemistry,Art,Algebra,Phys&Bio,Pre-Cal,Phys&Bio,,,EAL,Group 2 AP,Group 2 AP,Group 2 AP,Group 2 AP
+Wednesday,2,Social,Psychology,Biology,Chemistry,Spanish,Pre-Cal,,,,Group 2 AP,Group 2 AP,Group 2 AP,Group 2 AP
+Wednesday,3,Algebra,Social,Chemistry,Micro-Econ,Pre-Cal,PE,,,,Art,Spanish,,
+Wednesday,4,English,English,English,English,PE,Micro-Econ,,,,Group 3 AP,Group 3 AP,Group 3 AP,Group 3 AP
+Wednesday,5,Psychology,Algebra,Social,World History,Chemistry,Pre-Cal,,,,Literature,Cal-ABBC,,Spanish
+Wednesday,6,Geography,Physics,Algebra,Pre-Cal,Phys&Bio,Micro-Econ,,,,English,Cal-ABBC,AP Seminar,AP Seminar
+Wednesday,7,Algebra,Biology,Geography,PE,World History,Chemistry,,,,English,Art,AP Seminar,AP Seminar
+Wednesday,8,PE,Geography,Physics,Pre-Cal,Art,World History,,,,Spanish,English,BC-Stats,BC-Stats
+Thursday,1,Algebra,Chemistry,Physics,Art,Micro-Econ,English,,,,Group 3 AP,Group 3 AP,Group 3 AP,Group 3 AP
+Thursday,2,English,English,English,English,Chemistry,Micro-Econ,,,,Group 3 AP,Group 3 AP,Group 3 AP,Group 3 AP
+Thursday,3,Algebra,Art,Social,Phys&Bio,English,Phys&Bio,,,EAL,Group 2 AP,Group 2 AP,Group 2 AP,Group 2 AP
+Thursday,4,Art,Biology,PE,Chemistry,Spanish,English,,,,Group 2 AP,Group 2 AP,Group 2 AP,Group 2 AP
+Thursday,5,Biology,Geography,Algebra,World History,Pre-Cal,Spanish,,,,English,Cal-ABBC,AP Seminar,AP Seminar
+Thursday,6,Physics,Algebra,Art,PE,World History,Pre-Cal,,,,English,Cal-ABBC,AP Seminar,AP Seminar
+Friday,1,Social,Algebra,PE,Psych&Geo,Psych&Geo,Psych&Geo,EAL,EAL,EAL,Group 1 AP,Group 1 AP,Group 1 AP,Group 1 AP
+Friday,2,English,English,English,English,Pre-Cal,Micro-Econ,,,,Group 1 AP,Group 1 AP,Group 1 AP,Group 1 AP
+Friday,3,Algebra,Chemistry,Psychology,World History,English,Art,,,,PE,English,Spanish,
+Friday,4,Chemistry,Psychology,Geography,Spanish,Micro-Econ,English,,,,Literature,Art,BC-Stats,BC-Stats
+Friday,5,Geography,Physics,Biology,Micro-Econ,Art,Chemistry,,,,Spanish,PE,BC-Stats,BC-Stats
+Friday,6,Psychology,Social,Chemistry,Art,PE,Micro-Econ,,,,Cal-ABBC,Literature,PE,Spanish
+Friday,7,English,English,English,Micro-Econ,English,Pre-Cal,,,,Cal-ABBC,Spanish,,

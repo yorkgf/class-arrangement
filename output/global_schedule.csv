@@ -1,0 +1,343 @@
+Day,Period,Class,Course,Teacher
+Monday,1,10-A,PE,Wen
+Monday,1,10-B,Pre-Cal,Dan
+Monday,1,10-C,Micro-Econ,Neil
+Monday,1,11-A,Cal-ABBC,"Yan,Song"
+Monday,1,11-B,English,CYF
+Monday,1,12-A,PE,Wen
+Monday,1,12-B,Spanish,AK
+Monday,1,9-A,Art,Shiwen
+Monday,1,9-B,Biology,Zhao
+Monday,1,9-C,Psychology,Chloe
+Monday,2,10-A,World History,Neil
+Monday,2,10-B,Art,Shiwen
+Monday,2,10-C,English,Lucy
+Monday,2,11-A,Cal-ABBC,"Yan,Song"
+Monday,2,11-B,Literature,CYF
+Monday,2,12-A,Spanish,AK
+Monday,2,12-B,PE,Wen
+Monday,2,9-A,Algebra,Yuhan
+Monday,2,9-B,Social,Darin
+Monday,2,9-C,Biology,Zhao
+Monday,3,10-A,Psych&Geo,"Chloe,Manuel"
+Monday,3,10-B,Psych&Geo,"Chloe,Manuel"
+Monday,3,10-C,Psych&Geo,"Chloe,Manuel"
+Monday,3,10-EAL-A,EAL,Ezio
+Monday,3,10-EAL-B,EAL,CYF
+Monday,3,10-EAL-C,EAL,LZY
+Monday,3,11-A,Group 1 AP,"Guo,Zhao,Shiwen"
+Monday,3,11-B,Group 1 AP,"Guo,Zhao,Shiwen"
+Monday,3,12-A,Group 1 AP,"Guo,Zhao,Shiwen"
+Monday,3,12-B,Group 1 AP,"Guo,Zhao,Shiwen"
+Monday,3,9-A,Social,Darin
+Monday,3,9-B,PE,Wen
+Monday,3,9-C,Algebra,Yuhan
+Monday,4,10-A,Micro-Econ,Neil
+Monday,4,10-B,English,Lucy
+Monday,4,10-C,Pre-Cal,Dan
+Monday,4,11-A,Group 1 AP,"Guo,Zhao,Shiwen"
+Monday,4,11-B,Group 1 AP,"Guo,Zhao,Shiwen"
+Monday,4,12-A,Group 1 AP,"Guo,Zhao,Shiwen"
+Monday,4,12-B,Group 1 AP,"Guo,Zhao,Shiwen"
+Monday,4,9-A,Chemistry,Shao
+Monday,4,9-B,Algebra,Yuhan
+Monday,4,9-C,Social,Darin
+Monday,5,10-A,Pre-Cal,Dan
+Monday,5,10-B,Chemistry,Shao
+Monday,5,10-C,World History,Neil
+Monday,5,11-A,Spanish,AK
+Monday,5,11-B,English,CYF
+Monday,5,12-A,BC-Stats,Yan
+Monday,5,12-B,BC-Stats,Yuhan
+Monday,5,9-A,Physics,Guo
+Monday,5,9-B,Psychology,Chloe
+Monday,5,9-C,Geography,Manuel
+Monday,6,10-A,English,Lucy
+Monday,6,10-B,Micro-Econ,Neil
+Monday,6,10-C,Chemistry,Shao
+Monday,6,11-A,PE,Wen
+Monday,6,11-B,Spanish,AK
+Monday,6,12-A,BC-Stats,Yan
+Monday,6,12-B,BC-Stats,Yuhan
+Monday,6,9-A,English,LZY
+Monday,6,9-B,English,CYF
+Monday,6,9-C,English,Ezio
+Tuesday,1,10-A,Micro-Econ,Neil
+Tuesday,1,10-B,Phys&Bio,Song
+Tuesday,1,10-C,Art,Shiwen
+Tuesday,1,11-A,English,CYF
+Tuesday,1,11-B,Cal-ABBC,Yan
+Tuesday,1,12-A,AP Seminar,"Ezio,Lucy,Darin"
+Tuesday,1,12-B,AP Seminar,"Ezio,Lucy,Darin"
+Tuesday,1,9-A,Biology,Zhao
+Tuesday,1,9-B,Physics,Guo
+Tuesday,1,9-C,Chemistry,Shao
+Tuesday,2,10-A,World History,Neil
+Tuesday,2,10-B,Pre-Cal,Dan
+Tuesday,2,10-C,Spanish,AK
+Tuesday,2,11-A,English,CYF
+Tuesday,2,11-B,Art,Shiwen
+Tuesday,2,12-A,AP Seminar,"Ezio,Lucy,Darin"
+Tuesday,2,12-B,AP Seminar,"Ezio,Lucy,Darin"
+Tuesday,2,9-A,PE,Wen
+Tuesday,2,9-B,Psychology,Chloe
+Tuesday,2,9-C,Algebra,Yuhan
+Tuesday,3,10-A,Phys&Bio,Song
+Tuesday,3,10-B,English,Lucy
+Tuesday,3,10-C,Phys&Bio,Zhao
+Tuesday,3,10-EAL-C,EAL,LZY
+Tuesday,3,11-A,Group 2 AP,"Neil,Guo"
+Tuesday,3,11-B,Group 2 AP,"Neil,Guo"
+Tuesday,3,12-A,Group 2 AP,"Neil,Guo"
+Tuesday,3,12-B,Group 2 AP,"Neil,Guo"
+Tuesday,3,9-A,Algebra,Yuhan
+Tuesday,3,9-B,Social,Darin
+Tuesday,3,9-C,PE,Wen
+Tuesday,4,10-A,Chemistry,Shao
+Tuesday,4,10-B,Spanish,AK
+Tuesday,4,10-C,Pre-Cal,Dan
+Tuesday,4,11-A,Group 2 AP,"Neil,Guo"
+Tuesday,4,11-B,Group 2 AP,"Neil,Guo"
+Tuesday,4,12-A,Group 2 AP,"Neil,Guo"
+Tuesday,4,12-B,Group 2 AP,"Neil,Guo"
+Tuesday,4,9-A,Social,Darin
+Tuesday,4,9-B,Algebra,Yuhan
+Tuesday,4,9-C,Art,Shiwen
+Tuesday,5,10-A,Pre-Cal,Dan
+Tuesday,5,10-B,Micro-Econ,Neil
+Tuesday,5,10-C,English,Lucy
+Tuesday,5,11-A,Group 1 AP,"Guo,Zhao,Shiwen"
+Tuesday,5,11-B,Group 1 AP,"Guo,Zhao,Shiwen"
+Tuesday,5,12-A,Group 1 AP,"Guo,Zhao,Shiwen"
+Tuesday,5,12-B,Group 1 AP,"Guo,Zhao,Shiwen"
+Tuesday,5,9-A,Psychology,Chloe
+Tuesday,5,9-B,Chemistry,Shao
+Tuesday,5,9-C,Social,Darin
+Tuesday,6,10-A,English,Lucy
+Tuesday,6,10-B,Chemistry,Shao
+Tuesday,6,10-C,Micro-Econ,Neil
+Tuesday,6,11-A,Group 1 AP,"Guo,Zhao,Shiwen"
+Tuesday,6,11-B,Group 1 AP,"Guo,Zhao,Shiwen"
+Tuesday,6,12-A,Group 1 AP,"Guo,Zhao,Shiwen"
+Tuesday,6,12-B,Group 1 AP,"Guo,Zhao,Shiwen"
+Tuesday,6,9-A,English,LZY
+Tuesday,6,9-B,English,CYF
+Tuesday,6,9-C,English,Ezio
+Tuesday,7,11-A,Cal-ABBC,"Yan,Song"
+Tuesday,7,11-B,English,CYF
+Tuesday,7,12-A,PE,Wen
+Tuesday,7,12-B,PE,Wen
+Tuesday,8,11-A,Cal-ABBC,"Yan,Song"
+Tuesday,8,11-B,Literature,CYF
+Tuesday,8,12-A,Counseling,Wen
+Tuesday,8,12-B,Counseling,Wen
+Wednesday,1,10-A,Spanish,AK
+Wednesday,1,10-B,Micro-Econ,Neil
+Wednesday,1,10-C,Pre-Cal,Dan
+Wednesday,1,11-A,Art,Shiwen
+Wednesday,1,11-B,English,CYF
+Wednesday,1,9-A,Algebra,Yuhan
+Wednesday,1,9-B,PE,Wen
+Wednesday,1,9-C,Psychology,Chloe
+Wednesday,2,10-A,Micro-Econ,Neil
+Wednesday,2,10-B,Chemistry,Shao
+Wednesday,2,10-C,English,Lucy
+Wednesday,2,11-A,Group 3 AP,"Chloe,Manuel"
+Wednesday,2,11-B,Group 3 AP,"Chloe,Manuel"
+Wednesday,2,12-A,Group 3 AP,"Chloe,Manuel"
+Wednesday,2,12-B,Group 3 AP,"Chloe,Manuel"
+Wednesday,2,9-A,Biology,Zhao
+Wednesday,2,9-B,Algebra,Yuhan
+Wednesday,2,9-C,Social,Darin
+Wednesday,3,10-A,Pre-Cal,Dan
+Wednesday,3,10-B,English,Lucy
+Wednesday,3,10-C,Micro-Econ,Neil
+Wednesday,3,11-A,Literature,CYF
+Wednesday,3,11-B,Spanish,AK
+Wednesday,3,12-A,BC-Stats,Yan
+Wednesday,3,12-B,BC-Stats,Yuhan
+Wednesday,3,9-A,Psychology,Chloe
+Wednesday,3,9-B,Art,Shiwen
+Wednesday,3,9-C,PE,Wen
+Wednesday,4,10-A,Art,Shiwen
+Wednesday,4,10-B,Pre-Cal,Dan
+Wednesday,4,10-C,World History,Neil
+Wednesday,4,11-A,Spanish,AK
+Wednesday,4,11-B,English,CYF
+Wednesday,4,12-A,BC-Stats,Yan
+Wednesday,4,12-B,BC-Stats,Yuhan
+Wednesday,4,9-A,Geography,Manuel
+Wednesday,4,9-B,Biology,Zhao
+Wednesday,4,9-C,Physics,Guo
+Wednesday,5,10-A,Psych&Geo,"Chloe,Manuel"
+Wednesday,5,10-B,Psych&Geo,"Chloe,Manuel"
+Wednesday,5,10-C,Psych&Geo,"Chloe,Manuel"
+Wednesday,5,10-EAL-A,EAL,Ezio
+Wednesday,5,10-EAL-B,EAL,CYF
+Wednesday,5,10-EAL-C,EAL,LZY
+Wednesday,5,11-A,Cal-ABBC,"Yan,Song"
+Wednesday,5,11-B,Art,Shiwen
+Wednesday,5,12-A,Spanish,AK
+Wednesday,5,9-A,PE,Wen
+Wednesday,5,9-B,Physics,Guo
+Wednesday,5,9-C,Algebra,Yuhan
+Wednesday,6,10-A,English,Lucy
+Wednesday,6,10-B,World History,Neil
+Wednesday,6,10-C,Chemistry,Shao
+Wednesday,6,11-A,Group 1 AP,"Guo,Zhao,Shiwen"
+Wednesday,6,11-B,Group 1 AP,"Guo,Zhao,Shiwen"
+Wednesday,6,12-A,Group 1 AP,"Guo,Zhao,Shiwen"
+Wednesday,6,12-B,Group 1 AP,"Guo,Zhao,Shiwen"
+Wednesday,6,9-A,English,LZY
+Wednesday,6,9-B,English,CYF
+Wednesday,6,9-C,English,Ezio
+Wednesday,7,10-A,Phys&Bio,Song
+Wednesday,7,10-B,PE,Wen
+Wednesday,7,10-C,Phys&Bio,Zhao
+Wednesday,7,10-EAL-C,EAL,LZY
+Wednesday,7,11-A,Group 2 AP,"Neil,Guo"
+Wednesday,7,11-B,Group 2 AP,"Neil,Guo"
+Wednesday,7,12-A,Group 2 AP,"Neil,Guo"
+Wednesday,7,12-B,Group 2 AP,"Neil,Guo"
+Wednesday,7,9-A,Chemistry,Shao
+Wednesday,7,9-B,Social,Darin
+Wednesday,7,9-C,Geography,Manuel
+Wednesday,8,10-A,Chemistry,Shao
+Wednesday,8,10-B,Phys&Bio,Song
+Wednesday,8,10-C,PE,Wen
+Wednesday,8,11-A,Group 2 AP,"Neil,Guo"
+Wednesday,8,11-B,Group 2 AP,"Neil,Guo"
+Wednesday,8,12-A,Group 2 AP,"Neil,Guo"
+Wednesday,8,12-B,Group 2 AP,"Neil,Guo"
+Wednesday,8,9-A,Social,Darin
+Wednesday,8,9-B,Psychology,Chloe
+Wednesday,8,9-C,Biology,Zhao
+Thursday,1,10-A,Pre-Cal,Dan
+Thursday,1,10-B,World History,Neil
+Thursday,1,10-C,English,Lucy
+Thursday,1,11-A,Literature,CYF
+Thursday,1,11-B,Cal-ABBC,Yan
+Thursday,1,12-A,Spanish,AK
+Thursday,1,9-A,Biology,Zhao
+Thursday,1,9-B,Geography,Manuel
+Thursday,1,9-C,Physics,Guo
+Thursday,2,10-A,World History,Neil
+Thursday,2,10-B,English,Lucy
+Thursday,2,10-C,Art,Shiwen
+Thursday,2,11-A,PE,Wen
+Thursday,2,11-B,Cal-ABBC,Yan
+Thursday,2,12-B,Spanish,AK
+Thursday,2,9-A,Psychology,Chloe
+Thursday,2,9-B,Chemistry,Shao
+Thursday,2,9-C,Algebra,Yuhan
+Thursday,3,10-A,Spanish,AK
+Thursday,3,10-B,Phys&Bio,Song
+Thursday,3,10-C,Micro-Econ,Neil
+Thursday,3,11-A,English,CYF
+Thursday,3,11-B,PE,Wen
+Thursday,3,12-A,AP Seminar,"Ezio,Lucy,Darin"
+Thursday,3,12-B,AP Seminar,"Ezio,Lucy,Darin"
+Thursday,3,9-A,Algebra,Yuhan
+Thursday,3,9-B,Physics,Guo
+Thursday,3,9-C,Biology,Zhao
+Thursday,4,10-A,Micro-Econ,Neil
+Thursday,4,10-B,PE,Wen
+Thursday,4,10-C,Pre-Cal,Dan
+Thursday,4,11-A,English,CYF
+Thursday,4,11-B,Spanish,AK
+Thursday,4,12-A,AP Seminar,"Ezio,Lucy,Darin"
+Thursday,4,12-B,AP Seminar,"Ezio,Lucy,Darin"
+Thursday,4,9-A,Art,Shiwen
+Thursday,4,9-B,Algebra,Yuhan
+Thursday,4,9-C,Psychology,Chloe
+Thursday,5,10-A,Art,Shiwen
+Thursday,5,10-B,Pre-Cal,Dan
+Thursday,5,10-C,Spanish,AK
+Thursday,5,11-A,Group 3 AP,"Chloe,Manuel"
+Thursday,5,11-B,Group 3 AP,"Chloe,Manuel"
+Thursday,5,12-A,Group 3 AP,"Chloe,Manuel"
+Thursday,5,12-B,Group 3 AP,"Chloe,Manuel"
+Thursday,5,9-A,Physics,Guo
+Thursday,5,9-B,Biology,Zhao
+Thursday,5,9-C,Chemistry,Shao
+Thursday,6,10-A,English,Lucy
+Thursday,6,10-B,Micro-Econ,Neil
+Thursday,6,10-C,Chemistry,Shao
+Thursday,6,11-A,Group 3 AP,"Chloe,Manuel"
+Thursday,6,11-B,Group 3 AP,"Chloe,Manuel"
+Thursday,6,12-A,Group 3 AP,"Chloe,Manuel"
+Thursday,6,12-B,Group 3 AP,"Chloe,Manuel"
+Thursday,6,9-A,English,LZY
+Thursday,6,9-B,English,CYF
+Thursday,6,9-C,English,Ezio
+Friday,1,10-A,Pre-Cal,Dan
+Friday,1,10-B,World History,Neil
+Friday,1,10-C,English,Lucy
+Friday,1,11-A,Literature,CYF
+Friday,1,11-B,Cal-ABBC,Yan
+Friday,1,12-B,Spanish,AK
+Friday,1,9-A,Algebra,Yuhan
+Friday,1,9-B,Art,Shiwen
+Friday,1,9-C,Social,Darin
+Friday,2,10-A,Micro-Econ,Neil
+Friday,2,10-B,Spanish,AK
+Friday,2,10-C,Pre-Cal,Dan
+Friday,2,11-A,English,CYF
+Friday,2,11-B,Cal-ABBC,Yan
+Friday,2,12-A,AP Seminar,"Ezio,Lucy,Darin"
+Friday,2,12-B,AP Seminar,"Ezio,Lucy,Darin"
+Friday,2,9-A,Geography,Manuel
+Friday,2,9-B,Chemistry,Shao
+Friday,2,9-C,Art,Shiwen
+Friday,3,10-A,English,Lucy
+Friday,3,10-B,Art,Shiwen
+Friday,3,10-C,World History,Neil
+Friday,3,11-A,Group 3 AP,"Chloe,Manuel"
+Friday,3,11-B,Group 3 AP,"Chloe,Manuel"
+Friday,3,12-A,Group 3 AP,"Chloe,Manuel"
+Friday,3,12-B,Group 3 AP,"Chloe,Manuel"
+Friday,3,9-A,English,LZY
+Friday,3,9-B,English,CYF
+Friday,3,9-C,English,Ezio
+Friday,4,10-A,PE,Wen
+Friday,4,10-B,English,Lucy
+Friday,4,10-C,Micro-Econ,Neil
+Friday,4,11-A,Group 3 AP,"Chloe,Manuel"
+Friday,4,11-B,Group 3 AP,"Chloe,Manuel"
+Friday,4,12-A,Group 3 AP,"Chloe,Manuel"
+Friday,4,12-B,Group 3 AP,"Chloe,Manuel"
+Friday,4,9-A,Chemistry,Shao
+Friday,4,9-B,Social,Darin
+Friday,4,9-C,Algebra,Yuhan
+Friday,5,10-A,Phys&Bio,Song
+Friday,5,10-B,Micro-Econ,Neil
+Friday,5,10-C,Phys&Bio,Zhao
+Friday,5,10-EAL-C,EAL,LZY
+Friday,5,11-A,Art,Shiwen
+Friday,5,11-B,Literature,CYF
+Friday,5,12-A,BC-Stats,Yan
+Friday,5,12-B,BC-Stats,Yuhan
+Friday,5,9-A,Physics,Guo
+Friday,5,9-B,Geography,Manuel
+Friday,5,9-C,Chemistry,Shao
+Friday,6,10-A,Chemistry,Shao
+Friday,6,10-B,Pre-Cal,Dan
+Friday,6,10-C,PE,Wen
+Friday,6,11-A,Group 2 AP,"Neil,Guo"
+Friday,6,11-B,Group 2 AP,"Neil,Guo"
+Friday,6,12-A,Group 2 AP,"Neil,Guo"
+Friday,6,12-B,Group 2 AP,"Neil,Guo"
+Friday,6,9-A,English,LZY
+Friday,6,9-B,English,CYF
+Friday,6,9-C,English,Ezio
+Friday,7,10-A,Psych&Geo,"Chloe,Manuel"
+Friday,7,10-B,Psych&Geo,"Chloe,Manuel"
+Friday,7,10-C,Psych&Geo,"Chloe,Manuel"
+Friday,7,10-EAL-A,EAL,Ezio
+Friday,7,10-EAL-B,EAL,CYF
+Friday,7,10-EAL-C,EAL,LZY
+Friday,7,11-A,Spanish,AK
+Friday,7,11-B,PE,Wen
+Friday,7,9-A,Social,Darin
+Friday,7,9-B,Algebra,Yuhan
+Friday,7,9-C,Physics,Guo

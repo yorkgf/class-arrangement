@@ -1,0 +1,71 @@
+================================================================================
+CLASS SCHEDULE REPORT
+================================================================================
+
+Solver Status: FEASIBLE
+
+VALIDATION RESULTS:
+----------------------------------------
+[OK] Solution is valid!
+
+STATISTICS:
+----------------------------------------
+Total time slots per week: 35
+Total classes: 13
+Total scheduled periods: 342
+
+CLASS PERIOD COUNTS:
+----------------------------------------
+  [OK] 10-A: 33/33 periods
+  [OK] 10-B: 33/33 periods
+  [OK] 10-C: 33/33 periods
+  [OK] 10-EAL-A: 3/3 periods
+  [OK] 10-EAL-B: 3/3 periods
+  [OK] 10-EAL-C: 6/6 periods
+  [OK] 11-A: 35/35 periods
+  [OK] 11-B: 35/35 periods
+  [OK] 12-A: 31/31 periods
+  [OK] 12-B: 31/31 periods
+  [OK] 9-A: 33/33 periods
+  [OK] 9-B: 33/33 periods
+  [OK] 9-C: 33/33 periods
+
+JOINT SESSIONS:
+----------------------------------------
+  English: 9-A, 9-B, 9-C
+    Teachers: LZY, CYF, Ezio
+  Psych&Geo: 10-A, 10-B, 10-C
+    Teachers: Chloe,Manuel, Chloe,Manuel, Chloe,Manuel
+  Phys&Bio: 10-A, 10-C
+    Teachers: Song, Zhao
+  BC-Stats: 12-A, 12-B
+    Teachers: Yan, Yuhan
+  AP Seminar: 12-A, 12-B
+    Teachers: Ezio,Lucy,Darin, Ezio,Lucy,Darin
+  Group 1 AP: 11-A, 11-B, 12-A, 12-B
+    Teachers: Guo,Zhao,Shiwen, Guo,Zhao,Shiwen, Guo,Zhao,Shiwen, Guo,Zhao,Shiwen
+  Group 2 AP: 11-A, 11-B, 12-A, 12-B
+    Teachers: Neil,Guo, Neil,Guo, Neil,Guo, Neil,Guo
+  Group 3 AP: 11-A, 11-B, 12-A, 12-B
+    Teachers: Chloe,Manuel, Chloe,Manuel, Chloe,Manuel, Chloe,Manuel
+
+EXCLUDED TIME SLOTS:
+----------------------------------------
+  10-A: {(1, 7), (1, 8)}
+  10-B: {(1, 7), (1, 8)}
+  10-C: {(1, 7), (1, 8)}
+  10-EAL-A: {(1, 7), (1, 8)}
+  10-EAL-B: {(1, 7), (1, 8)}
+  10-EAL-C: {(1, 7), (1, 8)}
+  12-A: {(4, 7)}
+  12-B: {(4, 7)}
+  9-A: {(1, 7), (1, 8)}
+  9-B: {(1, 7), (1, 8)}
+  9-C: {(1, 7), (1, 8)}
+
+REQUIRED TIME SLOTS:
+----------------------------------------
+  12-A: Tue Period 7 - PE
+  12-A: Tue Period 8 - Counseling
+  12-B: Tue Period 7 - PE
+  12-B: Tue Period 8 - Counseling

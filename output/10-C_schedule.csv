@@ -1,0 +1,34 @@
+Day,Period,Course,Teacher
+Monday,1,Micro-Econ,Neil
+Monday,2,English,Lucy
+Monday,3,Psych&Geo,"Chloe,Manuel"
+Monday,4,Pre-Cal,Dan
+Monday,5,World History,Neil
+Monday,6,Chemistry,Shao
+Tuesday,1,Art,Shiwen
+Tuesday,2,Spanish,AK
+Tuesday,3,Phys&Bio,Zhao
+Tuesday,4,Pre-Cal,Dan
+Tuesday,5,English,Lucy
+Tuesday,6,Micro-Econ,Neil
+Wednesday,1,Pre-Cal,Dan
+Wednesday,2,English,Lucy
+Wednesday,3,Micro-Econ,Neil
+Wednesday,4,World History,Neil
+Wednesday,5,Psych&Geo,"Chloe,Manuel"
+Wednesday,6,Chemistry,Shao
+Wednesday,7,Phys&Bio,Zhao
+Wednesday,8,PE,Wen
+Thursday,1,English,Lucy
+Thursday,2,Art,Shiwen
+Thursday,3,Micro-Econ,Neil
+Thursday,4,Pre-Cal,Dan
+Thursday,5,Spanish,AK
+Thursday,6,Chemistry,Shao
+Friday,1,English,Lucy
+Friday,2,Pre-Cal,Dan
+Friday,3,World History,Neil
+Friday,4,Micro-Econ,Neil
+Friday,5,Phys&Bio,Zhao
+Friday,6,PE,Wen
+Friday,7,Psych&Geo,"Chloe,Manuel"
