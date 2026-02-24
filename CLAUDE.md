@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-High school class scheduling system using Google OR-Tools CP-SAT constraint solver. Schedules 13 classes across grades 9-12 into 35 weekly time slots while satisfying 67+ complex constraints including teacher conflicts, joint sessions, EAL synchronization, and special time requirements.
+High school class scheduling system using Google OR-Tools CP-SAT constraint solver. Schedules 18 classes across grades 9-12 into 35 weekly time slots while satisfying 70+ complex constraints including teacher conflicts, joint sessions, EAL synchronization, 9th grade English tracking classes (走班制), and special time requirements.
 
 ## Commands
 
@@ -54,11 +54,14 @@ src/
 - **C**: Teacher conflicts (same teacher can't teach two classes simultaneously)
 - **D-K**: English teacher cross-grade conflicts
 - **E3/E4**: EAL synchronization with Psych&Geo and Phys&Bio
-- **L-N**: 9-A/10-A English synchronization and conflicts
+- **L-N**: 9-Eng-A/10-A English synchronization and conflicts
 - **O**: Group 2 AP requires 10-A Chemistry/Phys&Bio overlap
 - **P**: Art vs Group 1 AP conflict (Shiwen teaches both)
 - **Q**: Soft - daily AP course optimization
 - **R/S**: Per-grade daily course limits
+- **T**: 9th grade tracking English A/B/C vs admin class 9-A/9-B mutual exclusion
+- **U**: 9th grade tracking English D/E vs admin class 9-C mutual exclusion
+- **V**: Tracking English A/B/C vs D/E teacher conflict (LZY teaches A+E, Ezio teaches C+D)
 
 ### Soft Constraints (Optimization Objectives)
 Located in `add_soft_constraints()` - uses weighted consecutive pair variables:

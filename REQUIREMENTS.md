@@ -2,10 +2,10 @@
 
 ## 项目概述
 
-使用 Google OR-Tools CP-SAT 求解器为9-12年级共13个班级创建自动排课系统，满足67+条复杂约束条件。
+使用 Google OR-Tools CP-SAT 求解器为9-12年级共18个班级创建自动排课系统，满足70+条复杂约束条件。
 
-**最后更新**: 2026-02-11
-**版本**: 3.5
+**最后更新**: 2026-02-24
+**版本**: 3.6
 **状态**: 已实现并验证（FEASIBLE）
 
 ---
@@ -28,13 +28,33 @@
 
 ## 2. 班级与课程配置
 
-### 2.1 9年级 (33节/周)
+### 2.1 9年级
+
+#### 行政班 (9-A, 9-B, 9-C) - 27节/周
 
 | 班级 | 课程 (周课时) | 教师 |
 |------|--------------|------|
-| **9-A**, **9-B**, **9-C** | English (6), Algebra (5), Social (4), Psychology (3), Physics (3), Chemistry (3), Biology (3), Geography (2), Art (2), PE (2) | English: LZY/CYF/Ezio<br>Algebra: Yuhan<br>Social: Darin<br>Psychology: Chloe<br>Physics: Guo<br>Chemistry: Shao<br>Biology: Zhao<br>Geography: Manuel<br>Art: Shiwen<br>PE: Wen |
+| **9-A**, **9-B**, **9-C** | Algebra (5), Social (4), Psychology (3), Physics (3), Chemistry (3), Biology (3), Geography (2), Art (2), PE (2) | Algebra: Yuhan<br>Social: Darin<br>Psychology: Chloe<br>Physics: Guo<br>Chemistry: Shao<br>Biology: Zhao<br>Geography: Manuel<br>Art: Shiwen<br>PE: Wen |
 
-**9-C班**: 本学期新增，课程配置与9-A、9-B相同
+**注意**: 行政班不包含English课程，学生参加走班英语课程。
+
+#### 走班英语班 (9-Eng-A/B/C/D/E) - 6节/周
+
+| 班级 | 课程 (周课时) | 教师 | 学生来源 |
+|------|--------------|------|----------|
+| **9-Eng-A** | English (6) | LZY | 9-A、9-B学生 |
+| **9-Eng-B** | English (6) | CYF | 9-A、9-B学生 |
+| **9-Eng-C** | English (6) | Ezio | 9-A、9-B学生 |
+| **9-Eng-D** | English (6) | Ezio | 9-C学生 |
+| **9-Eng-E** | English (6) | LZY | 9-C学生 |
+
+**走班制说明**:
+- 9-A和9-B行政班的学生按英语水平分到A/B/C三个走班英语班
+- 9-C行政班的学生按英语水平分到D/E两个走班英语班
+- A/B/C班必须同时上课（联合上课）
+- D/E班必须同时上课（联合上课）
+- A/B/C与D/E不能同时上课（LZY同时教A和E，Ezio同时教C和D，存在教师冲突）
+- 当走班英语班上课时，对应行政班必须空出时间（互斥约束）
 
 ### 2.2 10年级 (33节/周)
 
@@ -96,7 +116,8 @@
 
 | 课程 | 班级 | 教师 | 备注 |
 |------|------|------|------|
-| **9年级 English** | 9-A, 9-B, 9-C | LZY, CYF, Ezio | 3个班级同时上课，不同教师 |
+| **9年级走班英语A/B/C** | 9-Eng-A, 9-Eng-B, 9-Eng-C | LZY, CYF, Ezio | 3个班级同时上课，学生来自9-A/9-B |
+| **9年级走班英语D/E** | 9-Eng-D, 9-Eng-E | Ezio, LZY | 2个班级同时上课，学生来自9-C |
 | **10年级 Psych&Geo** | 10-A, 10-B, 10-C | Chloe, Manuel | 联合上课，多教师 |
 | **10年级 Phys&Bio** | 10-A, 10-C | Song, Zhao | 联合上课，不同教师（10-B独立） |
 | **12年级 BC-Stats** | 12-A, 12-B | Yan, Yuhan | 联合上课，不同教师 |
@@ -165,12 +186,14 @@ Lucy同时教授：
 
 ### 4.3 英语教师跨年级冲突
 
-| 教师 | 9年级 | 10年级 | 11年级 | 12年级 | 冲突约束 |
-|------|-------|--------|--------|--------|----------|
-| **LZY** | 9-A English | 10-C EAL | - | - | 不可同时上课 |
-| **CYF** | 9-B English | 10-B EAL | 11-A/B English<br>11-A/B Literature | - | 不可同时上课 |
-| **Ezio** | 9-C English | 10-A EAL | - | 12-A/B AP Seminar | 不可同时上课 |
+| 教师 | 9年级走班英语 | 10年级 | 11年级 | 12年级 | 冲突约束 |
+|------|--------------|--------|--------|--------|----------|
+| **LZY** | 9-Eng-A, 9-Eng-E | 10-C EAL | - | - | 不可同时上课 |
+| **CYF** | 9-Eng-B | 10-B EAL | 11-A/B English<br>11-A/B Literature | - | 不可同时上课 |
+| **Ezio** | 9-Eng-C, 9-Eng-D | 10-A EAL | - | 12-A/B AP Seminar | 不可同时上课 |
 | **Lucy** | - | 10-A/B/C English | - | 12-A/B AP Seminar | 10年级English与12年级AP Seminar不能同时上 |
+
+**注意**: LZY同时教9-Eng-A和9-Eng-E，Ezio同时教9-Eng-C和9-Eng-D，因此A/B/C组和D/E组不能同时上课。
 
 ### 4.4 BC-Statistics特殊约束
 
@@ -231,15 +254,15 @@ Darin教授多门课程，需要避免时间冲突：
 |------|------|----------|----------|
 | **Darin** | 9th Social<br>12th AP Seminar | 9th Social vs 12th AP Seminar | Darin同时教授这些课程 |
 
-### 4.10 9-A/10-A English特殊约束
+### 4.10 9-Eng-A/10-A English特殊约束
 
 | 约束 | 说明 | 详情 |
 |------|------|------|
-| **L. 同步约束** | 10-A English ⇒ 9-A English | 当10-A上英语课时，9-A必须也上英语课（单向蕴含） |
-| **M. vs Literature** | 不能与11-A/B Literature同时 | LZY(9-A)/Lucy(10-A) vs CYF(11-A/B) |
-| **N. vs AP Seminar** | 不能与12-A/B AP Seminar同时 | LZY(9-A)/Lucy(10-A) vs Lucy(12-A/B) |
+| **L. 同步约束** | 10-A English ⇒ 9-Eng-A English | 当10-A上英语课时，9-Eng-A必须也上英语课（单向蕴含） |
+| **M. vs Literature** | 不能与11-A/B Literature同时 | LZY(9-Eng-A)/Lucy(10-A) vs CYF(11-A/B) |
+| **N. vs AP Seminar** | 不能与12-A/B AP Seminar同时 | LZY(9-Eng-A)/Lucy(10-A) vs Lucy(12-A/B) |
 
-**注意**: 9-A有6节English，10-A有5节。其中5节必须满足同步约束(L)，第6节可以自由安排。
+**注意**: 9-Eng-A有6节English，10-A有5节。其中5节必须满足同步约束(L)，第6节可以自由安排。
 
 ### 4.11 Group 2 AP与10-A课程关联约束
 
@@ -268,6 +291,34 @@ Shiwen教师同时教授：
 | Art | Shiwen | Group 1 AP | Shiwen不能同时教授两门课 |
 | Group 1 AP | Guo, Zhao, **Shiwen** | Art | 同上 |
 
+### 4.13 9年级走班英语约束 (T/U/V)
+
+**T. 走班英语A/B/C与行政班9-A/9-B互斥（硬约束）**
+
+当9-Eng-A/B/C上英语课时，9-A和9-B行政班不能有任何课程安排（因为学生需要去走班上英语课）。
+
+| 走班英语班 | 互斥行政班 | 说明 |
+|-----------|-----------|------|
+| 9-Eng-A, 9-Eng-B, 9-Eng-C | 9-A, 9-B | 学生来自9-A/9-B，上英语时行政班必须空闲 |
+
+**U. 走班英语D/E与行政班9-C互斥（硬约束）**
+
+当9-Eng-D/E上英语课时，9-C行政班不能有任何课程安排（因为学生需要去走班上英语课）。
+
+| 走班英语班 | 互斥行政班 | 说明 |
+|-----------|-----------|------|
+| 9-Eng-D, 9-Eng-E | 9-C | 学生来自9-C，上英语时行政班必须空闲 |
+
+**V. 走班英语A/B/C与D/E不能同时上课（硬约束）**
+
+因为LZY同时教9-Eng-A和9-Eng-E，Ezio同时教9-Eng-C和9-Eng-D，所以A/B/C组和D/E组不能同时上课。
+
+| 组别 | 班级 | 教师 | 冲突说明 |
+|------|------|------|----------|
+| A/B/C组 | 9-Eng-A, 9-Eng-B, 9-Eng-C | LZY, CYF, Ezio | LZY教A，Ezio教C |
+| D/E组 | 9-Eng-D, 9-Eng-E | Ezio, LZY | Ezio教D，LZY教E |
+| **冲突** | A/B/C vs D/E | LZY(A vs E), Ezio(C vs D) | 两组不能同时上课 |
+
 ---
 
 ## 5. 特殊时间约束
@@ -277,6 +328,7 @@ Shiwen教师同时教授：
 | 班级 | 排除时间 | 原因 |
 |------|----------|------|
 | 9-A, 9-B, 9-C | 周二 7-8节 | 学校安排 |
+| 9-Eng-A/B/C/D/E | 周二 7-8节 | 与行政班同步 |
 | 10-A, 10-B, 10-C | 周二 7-8节 | 学校安排 |
 | 12-A, 12-B | 周五 7节 | 时间槽不足 |
 
@@ -425,7 +477,9 @@ schedule[class_name, course_name, day, period] ∈ {0, 1}
 ### 班级课时验证
 | 班级 | 要求 | 实际 | 状态 |
 |------|------|------|------|
-| 9-A, 9-B, 9-C | 33 | 33 | ✓ |
+| 9-A, 9-B, 9-C (行政班) | 27 | 27 | ✓ |
+| 9-Eng-A, 9-Eng-B, 9-Eng-C (走班英语) | 6 | 6 | ✓ |
+| 9-Eng-D, 9-Eng-E (走班英语) | 6 | 6 | ✓ |
 | 10-A, 10-B, 10-C | 33 | 33 | ✓ |
 | 10-EAL-A, 10-EAL-B | 3 | 3 | ✓ |
 | 10-EAL-C | 6 | 6 | ✓ |
@@ -519,14 +573,17 @@ python main.py
 | I | Lucy教师冲突（AP Seminar vs 10th English） | constraints.py:550-570 |
 | J | Guo教师冲突（9th Physics vs Group 1/2 AP） | constraints.py:572-596 |
 | K | Darin教师冲突（12th AP Seminar vs 9th Social） | constraints.py:598-622 |
-| L | 9-A/10-A English同步（10-A English ⇒ 9-A English） | constraints.py:624-648 |
-| M | English vs Literature冲突（9-A/10-A vs 11-A/B） | constraints.py:650-678 |
-| N | English vs AP Seminar冲突（9-A/10-A vs 12-A/B） | constraints.py:680-708 |
+| L | 9-Eng-A/10-A English同步（10-A English ⇒ 9-Eng-A English） | constraints.py:624-648 |
+| M | English vs Literature冲突（9-Eng-A/10-A vs 11-A/B） | constraints.py:650-678 |
+| N | English vs AP Seminar冲突（9-Eng-A/10-A vs 12-A/B） | constraints.py:680-708 |
 | O | Group 2 AP要求10-A上Chemistry或Phys&Bio | constraints.py:710-745 |
 | P | Art与Group 1 AP冲突（Shiwen教师） | constraints.py:747-780 |
 | Q | 每日AP课程数量优化（软约束） | constraints.py:511-550 |
-| R | 9年级每日课程限制（English/Art特殊规则） | constraints.py:820-900 |
+| R | 9年级行政班每日课程限制（Art特殊规则） | constraints.py:820-900 |
 | S | 10年级每日课程限制（Art特殊规则） | constraints.py:902-980 |
+| T | 走班英语A/B/C与行政班9-A/9-B互斥 | constraints.py:982-1020 |
+| U | 走班英语D/E与行政班9-C互斥 | constraints.py:1022-1055 |
+| V | 走班英语A/B/C与D/E不能同时（教师冲突） | constraints.py:1057-1085 |
 | 软约束优化 | 连排偏好/避免目标函数 | constraints.py:449-517 |
 
 ---
@@ -561,6 +618,7 @@ python main.py
 | 3.3 | 2026-02-11 | 添加软约束Q：尽量每天有至少2节AP课（Group 1/2/3 AP） |
 | 3.4 | 2026-02-11 | 添加硬约束R：9年级每日课程限制（English 1天2节，Art 1天2节，其他每天1节） |
 | 3.5 | 2026-02-11 | 添加硬约束S：10年级每日课程限制（Art 1天2节，其他每天1节） |
+| 3.6 | 2026-02-24 | 实现9年级走班制英语系统：新增5个走班英语班(9-Eng-A/B/C/D/E)，行政班移除English课程；添加硬约束T/U/V：走班英语与行政班互斥、A/B/C组与D/E组教师冲突 |
 
 ---
 
