@@ -101,10 +101,19 @@ for _, row in df.iterrows():
     class_courses[key] += 1
 
 # Expected periods (from data)
+# Note: 9-A/B/C are admin classes (no English), 9-Eng-* are tracking English classes
 expected = {
-    '9-A': {'English': 6, 'Algebra': 5, 'Social': 4, 'Psychology': 3, 'Physics': 3, 'Chemistry': 3, 'Biology': 3, 'Geography': 2, 'Art': 2, 'PE': 2},
-    '9-B': {'English': 6, 'Algebra': 5, 'Social': 4, 'Psychology': 3, 'Physics': 3, 'Chemistry': 3, 'Biology': 3, 'Geography': 2, 'Art': 2, 'PE': 2},
-    '9-C': {'English': 6, 'Algebra': 5, 'Social': 4, 'Psychology': 3, 'Physics': 3, 'Chemistry': 3, 'Biology': 3, 'Geography': 2, 'Art': 2, 'PE': 2},
+    # 9th grade admin classes (27 periods each, no English)
+    '9-A': {'Algebra': 5, 'Social': 4, 'Psychology': 3, 'Physics': 3, 'Chemistry': 3, 'Biology': 3, 'Geography': 2, 'Art': 2, 'PE': 2},
+    '9-B': {'Algebra': 5, 'Social': 4, 'Psychology': 3, 'Physics': 3, 'Chemistry': 3, 'Biology': 3, 'Geography': 2, 'Art': 2, 'PE': 2},
+    '9-C': {'Algebra': 5, 'Social': 4, 'Psychology': 3, 'Physics': 3, 'Chemistry': 3, 'Biology': 3, 'Geography': 2, 'Art': 2, 'PE': 2},
+    # 9th grade tracking English classes (走班英语)
+    '9-Eng-A': {'English': 6},
+    '9-Eng-B': {'English': 6},
+    '9-Eng-C': {'English': 6},
+    '9-Eng-D': {'English': 6},
+    '9-Eng-E': {'English': 6},
+    # 10th grade
     '10-A': {'English': 5, 'World History': 3, 'Psych&Geo': 3, 'Spanish': 2, 'Pre-Cal': 5, 'Micro-Econ': 5, 'Chemistry': 3, 'Phys&Bio': 3, 'Art': 2, 'PE': 2},
     '10-B': {'English': 5, 'World History': 3, 'Psych&Geo': 3, 'Spanish': 2, 'Pre-Cal': 5, 'Micro-Econ': 5, 'Chemistry': 3, 'Phys&Bio': 3, 'Art': 2, 'PE': 2},
     '10-C': {'English': 5, 'World History': 3, 'Psych&Geo': 3, 'Spanish': 2, 'Pre-Cal': 5, 'Micro-Econ': 5, 'Chemistry': 3, 'Phys&Bio': 3, 'Art': 2, 'PE': 2},
@@ -138,11 +147,16 @@ print()
 print('Joint Sessions')
 print('-' * 60)
 joint_sessions = [
-    ('English', ['9-A', '9-B', '9-C']),
+    # 9th grade tracking English (走班英语)
+    ('English', ['9-Eng-A', '9-Eng-B', '9-Eng-C']),  # A/B/C must be together
+    ('English', ['9-Eng-D', '9-Eng-E']),  # D/E must be together
+    # 10th grade
     ('Psych&Geo', ['10-A', '10-B', '10-C']),
     ('Phys&Bio', ['10-A', '10-C']),
+    # 12th grade
     ('BC-Stats', ['12-A', '12-B']),
     ('AP Seminar', ['12-A', '12-B']),
+    # Cross-grade AP
     ('Group 1 AP', ['11-A', '11-B', '12-A', '12-B']),
     ('Group 2 AP', ['11-A', '11-B', '12-A', '12-B']),
     ('Group 3 AP', ['11-A', '11-B', '12-A', '12-B']),

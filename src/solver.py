@@ -288,11 +288,11 @@ class ClassScheduleSolver:
                             f"only {scheduled_classes} of {session.classes} are scheduled"
                         )
 
-        # Check 5: English teacher conflicts
+        # Check 5: English teacher conflicts (using tracking English classes)
         english_teachers = {
-            "LZY": ["9-A", "10-EAL-C"],
-            "CYF": ["9-B", "10-EAL-B", "11-A", "11-B"],
-            "Ezio": ["9-C", "10-EAL-A", "12-A", "12-B"]
+            "LZY": ["9-Eng-A", "9-Eng-E", "10-EAL-C"],  # Teaches English A, E and EAL-C
+            "CYF": ["9-Eng-B", "10-EAL-B", "11-A", "11-B"],  # Teaches English B and EAL-B
+            "Ezio": ["9-Eng-C", "9-Eng-D", "10-EAL-A", "12-A", "12-B"]  # Teaches English C, D and EAL-A
         }
 
         for teacher, class_list in english_teachers.items():

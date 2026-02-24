@@ -178,6 +178,15 @@ class SchedulingConstraints:
         # S. 10th grade daily course limits (Art can have 2 periods on one day)
         self.add_10th_grade_daily_limits_constraint()
 
+        # T. 9th grade tracking English A/B/C vs admin class 9-A/9-B exclusion
+        self.add_tracking_english_abc_admin_constraint()
+
+        # U. 9th grade tracking English D/E vs admin class 9-C exclusion
+        self.add_tracking_english_de_admin_constraint()
+
+        # V. 9th grade tracking English A/B/C vs D/E conflict (teacher conflict)
+        self.add_tracking_english_abc_de_conflict_constraint()
+
         # G. Soft constraints (optimization objectives)
         self.add_soft_constraints()
 
@@ -686,34 +695,36 @@ class SchedulingConstraints:
         print(f"    Added {conflict_count} Darin AP Seminar/Social conflict constraints")
 
     def add_english_9a_10a_sync_constraint(self):
-        """L. 9-A/10-A English synchronization: When 10-A has English, 9-A must also have English.
-        9-A has 6 English periods, 10-A has 5. 5 periods must be synchronized, 1 is free."""
-        print("  Adding 9-A/10-A English synchronization constraint...")
+        """L. 9-Eng-A/10-A English synchronization: When 10-A has English, 9-Eng-A must also have English.
+        9-Eng-A has 6 English periods, 10-A has 5. 5 periods must be synchronized, 1 is free.
+        Note: Uses tracking class 9-Eng-A instead of admin class 9-A."""
+        print("  Adding 9-Eng-A/10-A English synchronization constraint...")
 
         sync_count = 0
         for day, period in self.time_slots:
             english_10a_key = ("10-A", "English", day, period)
-            english_9a_key = ("9-A", "English", day, period)
+            english_9eng_a_key = ("9-Eng-A", "English", day, period)
 
             english_10a = self.schedule_vars.get(english_10a_key)
-            english_9a = self.schedule_vars.get(english_9a_key)
+            english_9eng_a = self.schedule_vars.get(english_9eng_a_key)
 
-            # If 10-A has English, 9-A must also have English (10-A English => 9-A English)
-            if english_10a is not None and english_9a is not None:
-                self.model.AddImplication(english_10a, english_9a)
+            # If 10-A has English, 9-Eng-A must also have English (10-A English => 9-Eng-A English)
+            if english_10a is not None and english_9eng_a is not None:
+                self.model.AddImplication(english_10a, english_9eng_a)
                 sync_count += 1
 
-        print(f"    Added {sync_count} 9-A/10-A English sync constraints")
+        print(f"    Added {sync_count} 9-Eng-A/10-A English sync constraints")
 
     def add_english_literature_conflict_constraint(self):
-        """M. English vs Literature conflict: 9-A/10-A English cannot be at the same time as 11-A/B Literature.
-        LZY teaches 9-A English, Lucy teaches 10-A English, CYF teaches 11-A/B Literature."""
+        """M. English vs Literature conflict: 9-Eng-A/10-A English cannot be at the same time as 11-A/B Literature.
+        LZY teaches 9-Eng-A English, Lucy teaches 10-A English, CYF teaches 11-A/B Literature.
+        Note: Uses tracking class 9-Eng-A instead of admin class 9-A."""
         print("  Adding English vs Literature conflict constraint...")
 
         conflict_count = 0
         for day, period in self.time_slots:
-            # Check 9-A and 10-A English
-            for class_9_10 in ["9-A", "10-A"]:
+            # Check 9-Eng-A and 10-A English
+            for class_9_10 in ["9-Eng-A", "10-A"]:
                 english_key = (class_9_10, "English", day, period)
                 english = self.schedule_vars.get(english_key)
 
@@ -731,14 +742,15 @@ class SchedulingConstraints:
         print(f"    Added {conflict_count} English vs Literature conflict constraints")
 
     def add_english_ap_seminar_conflict_constraint(self):
-        """N. English vs AP Seminar conflict: 9-A/10-A English cannot be at the same time as 12-A/B AP Seminar.
-        LZY teaches 9-A English, Lucy teaches 10-A English and 12-A/B AP Seminar."""
+        """N. English vs AP Seminar conflict: 9-Eng-A/10-A English cannot be at the same time as 12-A/B AP Seminar.
+        LZY teaches 9-Eng-A English, Lucy teaches 10-A English and 12-A/B AP Seminar.
+        Note: Uses tracking class 9-Eng-A instead of admin class 9-A."""
         print("  Adding English vs AP Seminar conflict constraint...")
 
         conflict_count = 0
         for day, period in self.time_slots:
-            # Check 9-A and 10-A English
-            for class_9_10 in ["9-A", "10-A"]:
+            # Check 9-Eng-A and 10-A English
+            for class_9_10 in ["9-Eng-A", "10-A"]:
                 english_key = (class_9_10, "English", day, period)
                 english = self.schedule_vars.get(english_key)
 
@@ -824,29 +836,32 @@ class SchedulingConstraints:
 
     def add_9th_grade_daily_limits_constraint(self):
         """R. 9th grade daily course limits.
-        - English: exactly 1 day with 2 periods, other days max 1
+        For admin classes (9-A, 9-B, 9-C - no English, handled by tracking classes):
         - Art: at most 1 day with 2 periods (consecutive preferred), other days max 1
         - Other courses: max 1 period per day
+        For tracking English classes (9-Eng-A/B/C/D/E):
+        - English: exactly 1 day with 2 periods, other days max 1
         """
         print("  Adding 9th grade daily limits constraint...")
 
-        ninth_grade_classes = ["9-A", "9-B", "9-C"]
-        special_courses = ["English", "Art"]  # These can have 2 periods on at most 1 day
-        other_courses = ["Algebra", "Social", "Psychology", "Physics", "Chemistry", "Biology", "Geography", "PE"]
-
         constraint_count = 0
 
-        for class_name in ninth_grade_classes:
+        # ========================================
+        # Part 1: Admin classes (9-A, 9-B, 9-C) - no English
+        # ========================================
+        ninth_grade_admin_classes = ["9-A", "9-B", "9-C"]
+        special_courses_admin = ["Art"]  # Can have 2 periods on at most 1 day
+        other_courses_admin = ["Algebra", "Social", "Psychology", "Physics", "Chemistry", "Biology", "Geography", "PE"]
+
+        for class_name in ninth_grade_admin_classes:
             if class_name not in self.classes:
                 continue
 
-            # For English: exactly 1 day with 2 periods, other days max 1
-            # For Art: at most 1 day with 2 periods, other days max 1
-            for course_name in special_courses:
+            # For Art: at most 1 day with 2 periods
+            for course_name in special_courses_admin:
                 if course_name not in self.classes[class_name].courses:
                     continue
 
-                # Collect day period counts
                 day_periods = {}
                 for day in range(5):
                     max_period = 6 if day in [0, 3] else (8 if day in [1, 2] else 7)
@@ -858,38 +873,28 @@ class SchedulingConstraints:
                         if key in self.schedule_vars:
                             day_periods[day].append(self.schedule_vars[key])
 
-                # For each day, limit to max 2 periods
                 for day, periods in day_periods.items():
                     if periods:
                         self.model.Add(sum(periods) <= 2)
 
-                # Create indicator for each day: has_2_periods = (sum == 2)
                 has_2_days = []
                 for day, periods in day_periods.items():
                     if len(periods) >= 2:
                         has_2 = self.model.NewBoolVar(f"{class_name}_{course_name}_day_{day}_has_2")
-                        # has_2 = 1 iff sum(periods) == 2
                         self.model.Add(sum(periods) == 2).OnlyEnforceIf(has_2)
                         self.model.Add(sum(periods) != 2).OnlyEnforceIf(has_2.Not())
                         has_2_days.append(has_2)
                     elif periods:
-                        # If less than 2 periods possible, create a fixed False indicator
                         has_2 = self.model.NewBoolVar(f"{class_name}_{course_name}_day_{day}_has_2")
                         self.model.Add(has_2 == 0)
                         has_2_days.append(has_2)
 
-                # English: exactly 1 day with 2 periods (6 periods total = 2+1+1+1+1)
-                if course_name == "English" and has_2_days:
-                    self.model.Add(sum(has_2_days) == 1)
-                    constraint_count += 1
-
-                # Art: at most 1 day with 2 periods (2 periods total = 2 or 1+1)
-                if course_name == "Art" and has_2_days:
+                if has_2_days:
                     self.model.Add(sum(has_2_days) <= 1)
                     constraint_count += 1
 
             # For other courses: max 1 period per day
-            for course_name in other_courses:
+            for course_name in other_courses_admin:
                 if course_name not in self.classes[class_name].courses:
                     continue
 
@@ -906,6 +911,52 @@ class SchedulingConstraints:
                     if day_periods:
                         self.model.Add(sum(day_periods) <= 1)
                         constraint_count += 1
+
+        # ========================================
+        # Part 2: Tracking English classes (走班英语)
+        # ========================================
+        tracking_english_classes = ["9-Eng-A", "9-Eng-B", "9-Eng-C", "9-Eng-D", "9-Eng-E"]
+
+        for class_name in tracking_english_classes:
+            if class_name not in self.classes:
+                continue
+
+            # English: exactly 1 day with 2 periods (6 periods total = 2+1+1+1+1)
+            course_name = "English"
+            if course_name not in self.classes[class_name].courses:
+                continue
+
+            day_periods = {}
+            for day in range(5):
+                max_period = 6 if day in [0, 3] else (8 if day in [1, 2] else 7)
+                day_periods[day] = []
+                for period in range(1, max_period + 1):
+                    if (day, period) in self.excluded_slots.get(class_name, set()):
+                        continue
+                    key = (class_name, course_name, day, period)
+                    if key in self.schedule_vars:
+                        day_periods[day].append(self.schedule_vars[key])
+
+            for day, periods in day_periods.items():
+                if periods:
+                    self.model.Add(sum(periods) <= 2)
+
+            has_2_days = []
+            for day, periods in day_periods.items():
+                if len(periods) >= 2:
+                    has_2 = self.model.NewBoolVar(f"{class_name}_{course_name}_day_{day}_has_2")
+                    self.model.Add(sum(periods) == 2).OnlyEnforceIf(has_2)
+                    self.model.Add(sum(periods) != 2).OnlyEnforceIf(has_2.Not())
+                    has_2_days.append(has_2)
+                elif periods:
+                    has_2 = self.model.NewBoolVar(f"{class_name}_{course_name}_day_{day}_has_2")
+                    self.model.Add(has_2 == 0)
+                    has_2_days.append(has_2)
+
+            # Exactly 1 day with 2 periods
+            if has_2_days:
+                self.model.Add(sum(has_2_days) == 1)
+                constraint_count += 1
 
         print(f"    Added {constraint_count} 9th grade daily limit constraints")
 
@@ -989,3 +1040,90 @@ class SchedulingConstraints:
                         constraint_count += 1
 
         print(f"    Added {constraint_count} 10th grade daily limit constraints")
+
+    def add_tracking_english_abc_admin_constraint(self):
+        """T. 走班英语A/B/C与行政班9-A/9-B课程互斥.
+        当英语A/B/C班上课时，9-A/9-B行政班不能有其他课程。
+        (学生来自9-A和9-B，所以英语时间这些行政班不能有其他课)
+        """
+        print("  Adding tracking English A/B/C vs admin class 9-A/9-B constraint...")
+
+        constraint_count = 0
+        for day, period in self.time_slots:
+            # Check if this slot is excluded
+            if (day, period) in self.excluded_slots.get("9-Eng-A", set()):
+                continue
+
+            eng_a_key = ("9-Eng-A", "English", day, period)
+            eng_a = self.schedule_vars.get(eng_a_key)
+
+            if eng_a is not None:
+                # When English A/B/C is scheduled, 9-A and 9-B cannot have any other course
+                for admin_class in ["9-A", "9-B"]:
+                    if admin_class not in self.classes:
+                        continue
+                    for course_name in self.classes[admin_class].courses:
+                        admin_key = (admin_class, course_name, day, period)
+                        admin_var = self.schedule_vars.get(admin_key)
+                        if admin_var is not None:
+                            # eng_a + admin_var <= 1 (mutual exclusion)
+                            self.model.Add(eng_a + admin_var <= 1)
+                            constraint_count += 1
+
+        print(f"    Added {constraint_count} tracking English A/B/C vs admin constraints")
+
+    def add_tracking_english_de_admin_constraint(self):
+        """U. 走班英语D/E与行政班9-C课程互斥.
+        当英语D/E班上课时，9-C行政班不能有其他课程。
+        (学生来自9-C，所以英语时间这个行政班不能有其他课)
+        """
+        print("  Adding tracking English D/E vs admin class 9-C constraint...")
+
+        constraint_count = 0
+        for day, period in self.time_slots:
+            # Check if this slot is excluded
+            if (day, period) in self.excluded_slots.get("9-Eng-D", set()):
+                continue
+
+            eng_d_key = ("9-Eng-D", "English", day, period)
+            eng_d = self.schedule_vars.get(eng_d_key)
+
+            if eng_d is not None and "9-C" in self.classes:
+                # When English D/E is scheduled, 9-C cannot have any other course
+                for course_name in self.classes["9-C"].courses:
+                    admin_key = ("9-C", course_name, day, period)
+                    admin_var = self.schedule_vars.get(admin_key)
+                    if admin_var is not None:
+                        # eng_d + admin_var <= 1 (mutual exclusion)
+                        self.model.Add(eng_d + admin_var <= 1)
+                        constraint_count += 1
+
+        print(f"    Added {constraint_count} tracking English D/E vs admin constraints")
+
+    def add_tracking_english_abc_de_conflict_constraint(self):
+        """V. 走班英语A/B/C与D/E不能同时上课.
+        LZY教A班和E班，Ezio教C班和D班，存在教师冲突。
+        因此A/B/C联合组和D/E联合组必须在不同时间上课。
+        """
+        print("  Adding tracking English A/B/C vs D/E conflict constraint...")
+
+        conflict_count = 0
+        for day, period in self.time_slots:
+            # Check if this slot is excluded for either group
+            if (day, period) in self.excluded_slots.get("9-Eng-A", set()):
+                continue
+            if (day, period) in self.excluded_slots.get("9-Eng-D", set()):
+                continue
+
+            eng_a_key = ("9-Eng-A", "English", day, period)
+            eng_d_key = ("9-Eng-D", "English", day, period)
+
+            eng_a = self.schedule_vars.get(eng_a_key)
+            eng_d = self.schedule_vars.get(eng_d_key)
+
+            if eng_a is not None and eng_d is not None:
+                # A/B/C and D/E cannot be scheduled at the same time
+                self.model.Add(eng_a + eng_d <= 1)
+                conflict_count += 1
+
+        print(f"    Added {conflict_count} tracking English A/B/C vs D/E conflict constraints")

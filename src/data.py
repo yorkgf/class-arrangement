@@ -35,12 +35,12 @@ def get_class_groups() -> Dict[str, ClassGroup]:
     classes = {}
 
     # ========================================
-    # 9th Grade Classes (33 periods each)
+    # 9th Grade Administrative Classes (27 periods each, no English)
+    # English is handled by tracking classes (走班制)
     # ========================================
 
-    # 9-A
+    # 9-A (行政班 - 学生在英语课走班到 9-Eng-A/B/C)
     classes["9-A"] = ClassGroup(name="9-A", grade=9)
-    classes["9-A"].add_course(Course("English", 6, "LZY"))
     classes["9-A"].add_course(Course("Algebra", 5, "Yuhan"))
     classes["9-A"].add_course(Course("Social", 4, "Darin"))
     classes["9-A"].add_course(Course("Psychology", 3, "Chloe"))
@@ -51,9 +51,8 @@ def get_class_groups() -> Dict[str, ClassGroup]:
     classes["9-A"].add_course(Course("Art", 2, "Shiwen", prefer_consecutive=True))
     classes["9-A"].add_course(Course("PE", 2, "Wen"))
 
-    # 9-B
+    # 9-B (行政班 - 学生在英语课走班到 9-Eng-A/B/C)
     classes["9-B"] = ClassGroup(name="9-B", grade=9)
-    classes["9-B"].add_course(Course("English", 6, "CYF"))
     classes["9-B"].add_course(Course("Algebra", 5, "Yuhan"))
     classes["9-B"].add_course(Course("Social", 4, "Darin"))
     classes["9-B"].add_course(Course("Psychology", 3, "Chloe"))
@@ -64,9 +63,8 @@ def get_class_groups() -> Dict[str, ClassGroup]:
     classes["9-B"].add_course(Course("Art", 2, "Shiwen", prefer_consecutive=True))
     classes["9-B"].add_course(Course("PE", 2, "Wen"))
 
-    # 9-C (NEW)
+    # 9-C (行政班 - 学生在英语课走班到 9-Eng-D/E)
     classes["9-C"] = ClassGroup(name="9-C", grade=9)
-    classes["9-C"].add_course(Course("English", 6, "Ezio"))
     classes["9-C"].add_course(Course("Algebra", 5, "Yuhan"))
     classes["9-C"].add_course(Course("Social", 4, "Darin"))
     classes["9-C"].add_course(Course("Psychology", 3, "Chloe"))
@@ -76,6 +74,32 @@ def get_class_groups() -> Dict[str, ClassGroup]:
     classes["9-C"].add_course(Course("Geography", 2, "Manuel"))
     classes["9-C"].add_course(Course("Art", 2, "Shiwen", prefer_consecutive=True))
     classes["9-C"].add_course(Course("PE", 2, "Wen"))
+
+    # ========================================
+    # 9th Grade English Tracking Classes (走班英语班, 6 periods each)
+    # A/B/C班: 学生来自9-A和9-B行政班
+    # D/E班: 学生来自9-C行政班
+    # ========================================
+
+    # 9-Eng-A (英语A班, 学生来自9-A和9-B)
+    classes["9-Eng-A"] = ClassGroup(name="9-Eng-A", grade=9)
+    classes["9-Eng-A"].add_course(Course("English", 6, "LZY"))
+
+    # 9-Eng-B (英语B班, 学生来自9-A和9-B)
+    classes["9-Eng-B"] = ClassGroup(name="9-Eng-B", grade=9)
+    classes["9-Eng-B"].add_course(Course("English", 6, "CYF"))
+
+    # 9-Eng-C (英语C班, 学生来自9-A和9-B)
+    classes["9-Eng-C"] = ClassGroup(name="9-Eng-C", grade=9)
+    classes["9-Eng-C"].add_course(Course("English", 6, "Ezio"))
+
+    # 9-Eng-D (英语D班, 学生来自9-C)
+    classes["9-Eng-D"] = ClassGroup(name="9-Eng-D", grade=9)
+    classes["9-Eng-D"].add_course(Course("English", 6, "Ezio"))
+
+    # 9-Eng-E (英语E班, 学生来自9-C)
+    classes["9-Eng-E"] = ClassGroup(name="9-Eng-E", grade=9)
+    classes["9-Eng-E"].add_course(Course("English", 6, "LZY"))
 
     # ========================================
     # 10th Grade Classes (33 periods each)
@@ -196,11 +220,19 @@ def get_joint_sessions() -> List[JointSession]:
     """
     sessions = []
 
-    # 9th Grade English - 3 classes must attend simultaneously
+    # 9th Grade English Tracking Classes (走班英语)
+    # A/B/C班必须同时上课 (学生来自9-A和9-B行政班)
     sessions.append(JointSession(
-        classes=["9-A", "9-B", "9-C"],
+        classes=["9-Eng-A", "9-Eng-B", "9-Eng-C"],
         course_name="English",
         teachers=["LZY", "CYF", "Ezio"]
+    ))
+
+    # D/E班必须同时上课 (学生来自9-C行政班)
+    sessions.append(JointSession(
+        classes=["9-Eng-D", "9-Eng-E"],
+        course_name="English",
+        teachers=["Ezio", "LZY"]
     ))
 
     # 10th Grade Psych&Geo - all 3 classes must attend simultaneously
@@ -268,8 +300,10 @@ def get_excluded_time_slots() -> Dict[str, Set[tuple]]:
     excluded = {}
 
     # 9th and 10th grade: Tuesday periods 7-8 are excluded
-    # Including EAL classes (10-EAL-A, 10-EAL-B, 10-EAL-C)
-    for class_name in ["9-A", "9-B", "9-C", "10-A", "10-B", "10-C", "10-EAL-A", "10-EAL-B", "10-EAL-C"]:
+    # Including EAL classes and 9th grade English tracking classes
+    for class_name in ["9-A", "9-B", "9-C",
+                       "9-Eng-A", "9-Eng-B", "9-Eng-C", "9-Eng-D", "9-Eng-E",
+                       "10-A", "10-B", "10-C", "10-EAL-A", "10-EAL-B", "10-EAL-C"]:
         excluded[class_name] = {(1, 7), (1, 8)}
 
     # 12th grade: Friday period 7 is excluded
