@@ -11,8 +11,8 @@ VALIDATION RESULTS:
 STATISTICS:
 ----------------------------------------
 Total time slots per week: 35
-Total classes: 13
-Total scheduled periods: 342
+Total classes: 18
+Total scheduled periods: 354
 
 CLASS PERIOD COUNTS:
 ----------------------------------------
@@ -26,14 +26,21 @@ CLASS PERIOD COUNTS:
   [OK] 11-B: 35/35 periods
   [OK] 12-A: 31/31 periods
   [OK] 12-B: 31/31 periods
-  [OK] 9-A: 33/33 periods
-  [OK] 9-B: 33/33 periods
-  [OK] 9-C: 33/33 periods
+  [OK] 9-A: 27/27 periods
+  [OK] 9-B: 27/27 periods
+  [OK] 9-C: 27/27 periods
+  [OK] 9-Eng-A: 6/6 periods
+  [OK] 9-Eng-B: 6/6 periods
+  [OK] 9-Eng-C: 6/6 periods
+  [OK] 9-Eng-D: 6/6 periods
+  [OK] 9-Eng-E: 6/6 periods
 
 JOINT SESSIONS:
 ----------------------------------------
-  English: 9-A, 9-B, 9-C
+  English: 9-Eng-A, 9-Eng-B, 9-Eng-C
     Teachers: LZY, CYF, Ezio
+  English: 9-Eng-D, 9-Eng-E
+    Teachers: Ezio, LZY
   Psych&Geo: 10-A, 10-B, 10-C
     Teachers: Chloe,Manuel, Chloe,Manuel, Chloe,Manuel
   Phys&Bio: 10-A, 10-C
@@ -62,6 +69,11 @@ EXCLUDED TIME SLOTS:
   9-A: {(1, 7), (1, 8)}
   9-B: {(1, 7), (1, 8)}
   9-C: {(1, 7), (1, 8)}
+  9-Eng-A: {(1, 7), (1, 8)}
+  9-Eng-B: {(1, 7), (1, 8)}
+  9-Eng-C: {(1, 7), (1, 8)}
+  9-Eng-D: {(1, 7), (1, 8)}
+  9-Eng-E: {(1, 7), (1, 8)}
 
 REQUIRED TIME SLOTS:
 ----------------------------------------

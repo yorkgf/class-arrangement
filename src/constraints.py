@@ -178,6 +178,9 @@ class SchedulingConstraints:
         # S. 10th grade daily course limits (Art can have 2 periods on one day)
         self.add_10th_grade_daily_limits_constraint()
 
+        # W. Same course on same day must be consecutive
+        self.add_same_day_consecutive_constraint()
+
         # T. 9th grade tracking English A/B/C vs admin class 9-A/9-B exclusion
         self.add_tracking_english_abc_admin_constraint()
 
@@ -189,6 +192,9 @@ class SchedulingConstraints:
 
         # G. Soft constraints (optimization objectives)
         self.add_soft_constraints()
+
+        # X. Soft constraint: teacher period-1 limit (at most 3/week)
+        self.add_teacher_period1_soft_constraint()
 
     def add_basic_constraints(self):
         """A. Basic constraints."""
@@ -1127,3 +1133,71 @@ class SchedulingConstraints:
                 conflict_count += 1
 
         print(f"    Added {conflict_count} tracking English A/B/C vs D/E conflict constraints")
+
+    def add_same_day_consecutive_constraint(self):
+        """W. If a class has 2 periods of the same course on the same day, they must be consecutive.
+        For every pair of non-adjacent periods of the same course on the same day,
+        forbid both being scheduled. Combined with existing daily limits (at most 2/day),
+        this forces any 2 occurrences to be consecutive.
+        """
+        print("  Adding same-day consecutive constraint...")
+
+        constraint_count = 0
+        for class_name, class_group in self.classes.items():
+            for course_name, course in class_group.courses.items():
+                for day in range(5):
+                    max_period = 6 if day in [0, 3] else (8 if day in [1, 2] else 7)
+
+                    # Collect available period variables for this (class, course, day)
+                    day_vars = []
+                    for period in range(1, max_period + 1):
+                        key = (class_name, course_name, day, period)
+                        if key in self.schedule_vars:
+                            day_vars.append((period, self.schedule_vars[key]))
+
+                    # Forbid all non-adjacent pairs from being both scheduled
+                    for i in range(len(day_vars)):
+                        for j in range(i + 1, len(day_vars)):
+                            p_i, v_i = day_vars[i]
+                            p_j, v_j = day_vars[j]
+                            if p_j != p_i + 1:  # Not consecutive periods
+                                self.model.Add(v_i + v_j <= 1)
+                                constraint_count += 1
+
+        print(f"    Added {constraint_count} same-day consecutive constraints")
+
+    def add_teacher_period1_soft_constraint(self):
+        """X. Soft constraint: each teacher should teach period 1 at most 3 times per week.
+        For each teacher, counts the number of days they teach at period 1.
+        Penalizes excess beyond 3 with weight -2 per excess day.
+        """
+        print("  Adding teacher period-1 soft constraint...")
+
+        self.teacher_p1_penalties = []  # List of (excess_var, weight) tuples
+
+        for teacher, class_courses in self.teacher_classes.items():
+            teacher_p1_days = []
+
+            for day in range(5):
+                p1_vars = []
+                for class_name, course_name in class_courses:
+                    key = (class_name, course_name, day, 1)  # period 1
+                    if key in self.schedule_vars:
+                        p1_vars.append(self.schedule_vars[key])
+
+                if p1_vars:
+                    # Indicator: teacher teaches at period 1 on this day
+                    # Uses max to handle joint sessions (multiple vars=1 counts as 1)
+                    teaches_p1 = self.model.NewBoolVar(
+                        f"teacher_{teacher}_day_{day}_p1")
+                    self.model.AddMaxEquality(teaches_p1, p1_vars)
+                    teacher_p1_days.append(teaches_p1)
+
+            if len(teacher_p1_days) > 3:
+                # Create excess variable: excess = max(0, total_p1_days - 3)
+                excess = self.model.NewIntVar(
+                    0, 5, f"teacher_{teacher}_p1_excess")
+                self.model.Add(excess >= sum(teacher_p1_days) - 3)
+                self.teacher_p1_penalties.append((excess, -2))
+
+        print(f"    Added {len(self.teacher_p1_penalties)} teacher period-1 penalty terms")

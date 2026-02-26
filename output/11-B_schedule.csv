@@ -1,36 +1,36 @@
 Day,Period,Course,Teacher
-Monday,1,English,CYF
+Monday,1,Spanish,AK
 Monday,2,Literature,CYF
 Monday,3,Group 1 AP,"Guo,Zhao,Shiwen"
 Monday,4,Group 1 AP,"Guo,Zhao,Shiwen"
-Monday,5,English,CYF
-Monday,6,Spanish,AK
-Tuesday,1,Cal-ABBC,Yan
-Tuesday,2,Art,Shiwen
-Tuesday,3,Group 2 AP,"Neil,Guo"
-Tuesday,4,Group 2 AP,"Neil,Guo"
-Tuesday,5,Group 1 AP,"Guo,Zhao,Shiwen"
-Tuesday,6,Group 1 AP,"Guo,Zhao,Shiwen"
-Tuesday,7,English,CYF
+Monday,5,Art,Shiwen
+Monday,6,English,CYF
+Tuesday,1,Group 2 AP,"Neil,Guo"
+Tuesday,2,Group 2 AP,"Neil,Guo"
+Tuesday,3,English,CYF
+Tuesday,4,Art,Shiwen
+Tuesday,5,Spanish,AK
+Tuesday,6,Cal-ABBC,Yan
+Tuesday,7,Cal-ABBC,Yan
 Tuesday,8,Literature,CYF
-Wednesday,1,English,CYF
-Wednesday,2,Group 3 AP,"Chloe,Manuel"
-Wednesday,3,Spanish,AK
-Wednesday,4,English,CYF
-Wednesday,5,Art,Shiwen
-Wednesday,6,Group 1 AP,"Guo,Zhao,Shiwen"
-Wednesday,7,Group 2 AP,"Neil,Guo"
+Wednesday,1,Literature,CYF
+Wednesday,2,Spanish,AK
+Wednesday,3,Group 1 AP,"Guo,Zhao,Shiwen"
+Wednesday,4,Group 1 AP,"Guo,Zhao,Shiwen"
+Wednesday,5,Group 3 AP,"Chloe,Manuel"
+Wednesday,6,English,CYF
+Wednesday,7,PE,Wen
 Wednesday,8,Group 2 AP,"Neil,Guo"
-Thursday,1,Cal-ABBC,Yan
-Thursday,2,Cal-ABBC,Yan
-Thursday,3,PE,Wen
-Thursday,4,Spanish,AK
+Thursday,1,PE,Wen
+Thursday,2,English,CYF
+Thursday,3,Cal-ABBC,Yan
+Thursday,4,Cal-ABBC,Yan
 Thursday,5,Group 3 AP,"Chloe,Manuel"
 Thursday,6,Group 3 AP,"Chloe,Manuel"
-Friday,1,Cal-ABBC,Yan
-Friday,2,Cal-ABBC,Yan
-Friday,3,Group 3 AP,"Chloe,Manuel"
-Friday,4,Group 3 AP,"Chloe,Manuel"
-Friday,5,Literature,CYF
-Friday,6,Group 2 AP,"Neil,Guo"
-Friday,7,PE,Wen
+Friday,1,Group 2 AP,"Neil,Guo"
+Friday,2,Group 2 AP,"Neil,Guo"
+Friday,3,Cal-ABBC,Yan
+Friday,4,Group 1 AP,"Guo,Zhao,Shiwen"
+Friday,5,Group 3 AP,"Chloe,Manuel"
+Friday,6,Group 3 AP,"Chloe,Manuel"
+Friday,7,English,CYF

@@ -151,6 +151,11 @@ class ClassScheduleSolver:
             objective_terms.extend(self.constraints.daily_ap_indicators)
             print(f"  Optimization: Added {len(self.constraints.daily_ap_indicators)} daily AP preference objectives")
 
+        # Teacher period-1 penalties (at most 3 per week per teacher)
+        if hasattr(self.constraints, 'teacher_p1_penalties') and self.constraints.teacher_p1_penalties:
+            objective_terms.extend(self.constraints.teacher_p1_penalties)
+            print(f"  Optimization: Added {len(self.constraints.teacher_p1_penalties)} teacher period-1 penalty objectives")
+
         if objective_terms:
             # Maximize the weighted sum of all soft constraints
             objective = sum(var * weight for var, weight in objective_terms)

@@ -18,7 +18,7 @@ python main.py
 # Run with custom timeout (seconds)
 python main.py 600
 
-# Verify constraints on existing solution
+# Verify constraints on existing solution (reads output/global_schedule.csv)
 python check_constraints.py
 
 # Check time slot feasibility before solving
@@ -34,61 +34,73 @@ Output files are written to `output/`:
 
 ```
 src/
-├── data.py         # Class/course/teacher definitions, joint sessions, time constraints
-├── models.py       # Data classes: Course, ClassGroup, JointSession, TimeSlot
-├── constraints.py  # All CP-SAT constraints (A-S categories)
-├── solver.py       # CP-SAT model building and solving
-└── output.py       # CSV/report generation
+├── data.py         # All scheduling data: classes, courses, teachers, joint sessions, time constraints
+├── models.py       # Dataclasses: Course, ClassGroup, JointSession, TimeSlot, ScheduleConfig
+├── constraints.py  # SchedulingConstraints class with all CP-SAT constraints (A-X categories)
+├── solver.py       # ClassScheduleSolver: model building, solving, validation
+└── output.py       # ScheduleOutput: CSV/report generation, consecutive analysis
 ```
 
 ### Data Flow
-1. `data.py` defines all scheduling data (classes, courses, teachers, constraints)
+1. `data.py` defines all scheduling data (classes, courses, teachers, constraints) via getter functions
 2. `solver.py` creates CP-SAT boolean variables: `schedule[class, course, day, period]`
-3. `constraints.py` adds all constraint types to the model
-4. Soft constraints use weighted objective function for optimization
-5. `output.py` formats and exports the solution
+3. `constraints.py` adds all constraint types to the model via `add_all_constraints()`
+4. Soft constraints are collected as `(var, weight)` tuples in `consecutive_pairs`, `daily_ap_indicators`, and `teacher_p1_penalties` lists
+5. `solver.py:_add_objective_function()` combines soft constraints into a single `Maximize` objective
+6. `output.py` formats and exports the solution
+
+### Teacher String Convention
+Teachers are stored as strings. Multi-teacher courses use comma-separated values (e.g., `"Yan,Song"`, `"Ezio,Lucy,Darin"`). Use `Course.get_teachers()` to split into a list.
 
 ### Key Constraint Categories (in constraints.py)
 - **A**: Basic (course hours, one course per slot)
 - **B**: Joint sessions (synchronized multi-class courses)
 - **C**: Teacher conflicts (same teacher can't teach two classes simultaneously)
-- **D-K**: English teacher cross-grade conflicts
-- **E3/E4**: EAL synchronization with Psych&Geo and Phys&Bio
-- **L-N**: 9-Eng-A/10-A English synchronization and conflicts
+- **D-K**: Cross-grade teacher conflicts (English teachers, Guo, Darin, etc.)
+- **E3/E4**: EAL synchronization — E3: `Psych&Geo ⇒ EAL` (implication); E4: 10-EAL-C has exactly 3 periods overlapping with 10-A/10-C Phys&Bio
+- **H**: 11-A English syncs with 12-A/B AP Seminar
+- **I**: Lucy conflict (AP Seminar vs 10th English)
+- **L-N**: 9-Eng-A/10-A English synchronization and conflict constraints
 - **O**: Group 2 AP requires 10-A Chemistry/Phys&Bio overlap
 - **P**: Art vs Group 1 AP conflict (Shiwen teaches both)
-- **Q**: Soft - daily AP course optimization
-- **R/S**: Per-grade daily course limits
-- **T**: 9th grade tracking English A/B/C vs admin class 9-A/9-B mutual exclusion
-- **U**: 9th grade tracking English D/E vs admin class 9-C mutual exclusion
+- **Q**: Soft — daily AP course optimization (+1 weight per day with >=2 AP courses)
+- **R/S**: Per-grade daily course limits (9th grade and 10th grade)
+- **T**: Tracking English A/B/C vs admin class 9-A/9-B mutual exclusion
+- **U**: Tracking English D/E vs admin class 9-C mutual exclusion
 - **V**: Tracking English A/B/C vs D/E teacher conflict (LZY teaches A+E, Ezio teaches C+D)
+- **W**: Hard — if a class has 2 periods of the same course on the same day, they must be consecutive
+- **X**: Soft — each teacher should teach period 1 at most 3 times per week (-2 penalty per excess day)
 
 ### Soft Constraints (Optimization Objectives)
-Located in `add_soft_constraints()` - uses weighted consecutive pair variables:
-- Cal-ABBC, Group AP, BC-Stats, AP Seminar: +3 weight (prefer consecutive)
-- English: -1 weight (minimize consecutive)
-- Algebra, Pre-Cal: -2 weight (avoid consecutive)
+Located in `add_soft_constraints()` — uses weighted consecutive pair variables:
+- Cal-ABBC, Group AP, BC-Stats, AP Seminar: **+3** weight (prefer consecutive)
+- English: **-1** weight (minimize consecutive)
+- Algebra, Pre-Cal: **-2** weight (avoid consecutive)
 
 ## Key Data Structures
 
-**Joint Sessions** (in `data.py:get_joint_sessions()`): Classes that must attend simultaneously. Teachers in joint sessions don't create conflicts.
+**Joint Sessions** (in `data.py:get_joint_sessions()`): Classes that must attend simultaneously. Teachers in joint sessions don't create conflicts with each other.
+
+**9th Grade Tracking English (走班制)**: Admin classes 9-A/9-B/9-C have no English course. Instead, students attend tracking English classes (9-Eng-A/B/C from 9-A/9-B students, 9-Eng-D/E from 9-C students). A/B/C are joint; D/E are joint; A/B/C and D/E cannot overlap.
 
 **EAL Constraints**:
-- E3: `Psych&Geo ⇒ EAL` (implication, not equality)
-- E4: 10-EAL-C has exactly 3 periods overlapping with 10-A/10-C Phys&Bio
+- E3: `Psych&Geo ⇒ EAL` (one-way implication, not equality)
+- E4: 10-EAL-C has exactly 3 periods overlapping with 10-A/10-C Phys&Bio (uses `AddMinEquality`/`AddMaxEquality`)
 
-**Time Configuration**: Mon=6, Tue=8, Wed=8, Thu=6, Fri=7 periods (35 total)
+**Time Configuration**: Mon=6, Tue=8, Wed=8, Thu=6, Fri=7 periods (35 total). Days are 0-indexed (0=Mon). Periods are 1-indexed.
 
 ## Modifying Constraints
 
 To add a new constraint:
-1. Add the constraint logic in `constraints.py` in the appropriate method
+1. Add the constraint logic as a method in `SchedulingConstraints` (in `constraints.py`)
 2. Call the new method from `add_all_constraints()`
-3. If it's a soft constraint, add to `consecutive_pairs` or `daily_ap_indicators` lists
+3. If it's a soft constraint, append `(var, weight)` tuples to `self.consecutive_pairs`, `self.daily_ap_indicators`, or `self.teacher_p1_penalties`
 4. Update validation in `solver.py:validate_solution()` if needed
+5. Update `check_constraints.py` to verify the new constraint against CSV output
 
 ## Troubleshooting
 
-- **INFEASIBLE**: Check `check_feasibility.py` for time slot availability issues
-- **Slow solving**: Reduce `time_limit_seconds` in `main.py` or simplify constraints
+- **INFEASIBLE**: Run `check_feasibility.py` first to find time slot availability issues
+- **Slow solving**: Increase `time_limit_seconds` arg to `main.py` or simplify constraints
 - **Constraint violations**: Run `check_constraints.py` after solving to identify specific issues
+- **REQUIREMENTS.md**: Contains the full specification in Chinese with all constraint details and verification results
