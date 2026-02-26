@@ -1,34 +1,34 @@
 Day,Period,Course,Teacher
-Monday,1,Psych&Geo,"Chloe,Manuel"
-Monday,2,Micro-Econ,Neil
-Monday,3,Pre-Cal,Dan
-Monday,4,World History,Neil
-Monday,5,PE,Wen
-Monday,6,English,Lucy
-Tuesday,1,Pre-Cal,Dan
-Tuesday,2,Micro-Econ,Neil
-Tuesday,3,Chemistry,Shao
-Tuesday,4,Spanish,AK
+Monday,1,Phys&Bio,Song
+Monday,2,Chemistry,Shao
+Monday,3,Micro-Econ,Shi
+Monday,4,Psych&Geo,"Chloe,Manuel"
+Monday,5,English,Lucy
+Monday,6,Pre-Cal,Dan
+Tuesday,1,Art,Shiwen
+Tuesday,2,Art,Shiwen
+Tuesday,3,Micro-Econ,Shi
+Tuesday,4,English,Lucy
 Tuesday,5,PE,Wen
-Tuesday,6,English,Lucy
-Wednesday,1,Pre-Cal,Dan
-Wednesday,2,Micro-Econ,Neil
-Wednesday,3,Phys&Bio,Song
-Wednesday,4,Art,Shiwen
-Wednesday,5,Art,Shiwen
-Wednesday,6,English,Lucy
-Wednesday,7,Psych&Geo,"Chloe,Manuel"
+Tuesday,6,Pre-Cal,Dan
+Wednesday,1,PE,Wen
+Wednesday,2,Phys&Bio,Song
+Wednesday,3,World History,Neil
+Wednesday,4,Pre-Cal,Dan
+Wednesday,5,Spanish,AK
+Wednesday,6,Micro-Econ,Shi
+Wednesday,7,English,Lucy
 Wednesday,8,Chemistry,Shao
-Thursday,1,Phys&Bio,Song
+Thursday,1,Micro-Econ,Shi
 Thursday,2,Pre-Cal,Dan
 Thursday,3,World History,Neil
-Thursday,4,Chemistry,Shao
-Thursday,5,English,Lucy
-Thursday,6,Micro-Econ,Neil
+Thursday,4,Spanish,AK
+Thursday,5,Psych&Geo,"Chloe,Manuel"
+Thursday,6,English,Lucy
 Friday,1,English,Lucy
-Friday,2,Micro-Econ,Neil
-Friday,3,Psych&Geo,"Chloe,Manuel"
-Friday,4,Phys&Bio,Song
+Friday,2,Chemistry,Shao
+Friday,3,World History,Neil
+Friday,4,Psych&Geo,"Chloe,Manuel"
 Friday,5,Pre-Cal,Dan
-Friday,6,World History,Neil
-Friday,7,Spanish,AK
+Friday,6,Phys&Bio,Song
+Friday,7,Micro-Econ,Shi

@@ -1,35 +1,35 @@
 Day,Period,Course,Teacher
-Monday,1,BC-Stats,Yuhan
-Monday,2,BC-Stats,Yuhan
-Monday,3,Group 3 AP,"Chloe,Manuel"
-Monday,4,Group 3 AP,"Chloe,Manuel"
-Monday,5,[Free],
-Monday,6,Spanish,AK
-Tuesday,1,Group 3 AP,"Chloe,Manuel"
-Tuesday,2,AP Seminar,"Ezio,Lucy,Darin"
-Tuesday,3,AP Seminar,"Ezio,Lucy,Darin"
-Tuesday,4,Group 1 AP,"Guo,Zhao,Shiwen"
-Tuesday,5,Group 2 AP,"Neil,Guo"
-Tuesday,6,Group 2 AP,"Neil,Guo"
+Monday,1,AP Seminar,"Ezio,Lucy,Darin"
+Monday,2,AP Seminar,"Ezio,Lucy,Darin"
+Monday,3,Group 1 AP,"Guo,Zhao,Shiwen"
+Monday,4,Group 1 AP,"Guo,Zhao,Shiwen"
+Monday,5,Spanish,AK
+Monday,6,[Free],
+Tuesday,1,AP Seminar,"Ezio,Lucy,Darin"
+Tuesday,2,Group 2 AP,"Neil,Guo"
+Tuesday,3,Group 2 AP,"Neil,Guo"
+Tuesday,4,[Free],
+Tuesday,5,Spanish,AK
+Tuesday,6,Group 1 AP,"Guo,Zhao,Shiwen"
 Tuesday,7,PE,Wen
 Tuesday,8,Counseling,Wen
-Wednesday,1,Group 1 AP,"Guo,Zhao,Shiwen"
-Wednesday,2,Group 1 AP,"Guo,Zhao,Shiwen"
-Wednesday,3,AP Seminar,"Ezio,Lucy,Darin"
+Wednesday,1,Group 2 AP,"Neil,Guo"
+Wednesday,2,Group 2 AP,"Neil,Guo"
+Wednesday,3,[Free],
 Wednesday,4,AP Seminar,"Ezio,Lucy,Darin"
-Wednesday,5,Group 2 AP,"Neil,Guo"
-Wednesday,6,Group 2 AP,"Neil,Guo"
-Wednesday,7,BC-Stats,Yuhan
+Wednesday,5,AP Seminar,"Ezio,Lucy,Darin"
+Wednesday,6,Group 3 AP,"Chloe,Manuel"
+Wednesday,7,Group 3 AP,"Chloe,Manuel"
 Wednesday,8,BC-Stats,Yuhan
-Thursday,1,Group 3 AP,"Chloe,Manuel"
-Thursday,2,Group 3 AP,"Chloe,Manuel"
-Thursday,3,BC-Stats,Yuhan
-Thursday,4,[Free],
-Thursday,5,[Free],
-Thursday,6,Spanish,AK
-Friday,1,Spanish,AK
-Friday,2,AP Seminar,"Ezio,Lucy,Darin"
-Friday,3,PE,Wen
-Friday,4,Group 2 AP,"Neil,Guo"
-Friday,5,Group 1 AP,"Guo,Zhao,Shiwen"
-Friday,6,Group 1 AP,"Guo,Zhao,Shiwen"
+Thursday,1,Group 1 AP,"Guo,Zhao,Shiwen"
+Thursday,2,Group 1 AP,"Guo,Zhao,Shiwen"
+Thursday,3,Group 3 AP,"Chloe,Manuel"
+Thursday,4,BC-Stats,Yuhan
+Thursday,5,BC-Stats,Yuhan
+Thursday,6,PE,Wen
+Friday,1,Group 2 AP,"Neil,Guo"
+Friday,2,Spanish,AK
+Friday,3,BC-Stats,Yuhan
+Friday,4,BC-Stats,Yuhan
+Friday,5,Group 3 AP,"Chloe,Manuel"
+Friday,6,Group 3 AP,"Chloe,Manuel"

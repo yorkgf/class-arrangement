@@ -196,6 +196,9 @@ class SchedulingConstraints:
         # X. Soft constraint: teacher period-1 limit (at most 3/week)
         self.add_teacher_period1_soft_constraint()
 
+        # Z. Soft constraint: teacher daily max periods (at most 5/day)
+        self.add_teacher_daily_max_soft_constraint()
+
     def add_basic_constraints(self):
         """A. Basic constraints."""
         print("  Adding basic constraints...")
@@ -508,6 +511,14 @@ class SchedulingConstraints:
                 if course_name not in class_group.courses:
                     continue
                 self._add_consecutive_indicator(class_name, course_name, +3)
+
+        # Category 1b: Prefer consecutive (moderate): Art
+        prefer_consecutive_moderate = ["Art"]
+        for course_name in prefer_consecutive_moderate:
+            for class_name, class_group in self.classes.items():
+                if course_name not in class_group.courses:
+                    continue
+                self._add_consecutive_indicator(class_name, course_name, +2)
 
         # Category 2: Minimize consecutive (but allow some)
         minimize_consecutive = ["English"]
@@ -1243,3 +1254,45 @@ class SchedulingConstraints:
                 self.teacher_p1_penalties.append((excess, -2))
 
         print(f"    Added {len(self.teacher_p1_penalties)} teacher period-1 penalty terms")
+
+    def add_teacher_daily_max_soft_constraint(self):
+        """Z. Soft constraint: each teacher should teach at most 5 periods per day.
+        For each teacher and each day, counts distinct periods taught
+        (joint sessions count as 1 period). Penalizes each excess period
+        beyond 5 with weight -2.
+        """
+        print("  Adding teacher daily max soft constraint...")
+
+        self.teacher_daily_max_penalties = []  # List of (excess_var, weight) tuples
+
+        for teacher, class_courses in self.teacher_classes.items():
+            for day in range(5):
+                max_period = 6 if day in [0, 3] else (8 if day in [1, 2] else 7)
+
+                # For each period, create an indicator: does this teacher teach at this period?
+                period_indicators = []
+                for period in range(1, max_period + 1):
+                    period_vars = []
+                    for class_name, course_name in class_courses:
+                        if (day, period) in self.excluded_slots.get(class_name, set()):
+                            continue
+                        key = (class_name, course_name, day, period)
+                        if key in self.schedule_vars:
+                            period_vars.append(self.schedule_vars[key])
+
+                    if period_vars:
+                        # Use max to handle joint sessions (multiple vars=1 counts as 1)
+                        teaches = self.model.NewBoolVar(
+                            f"teacher_{teacher}_day_{day}_p{period}")
+                        self.model.AddMaxEquality(teaches, period_vars)
+                        period_indicators.append(teaches)
+
+                if len(period_indicators) > 5:
+                    # excess = max(0, total_periods - 5)
+                    max_excess = len(period_indicators) - 5
+                    excess = self.model.NewIntVar(
+                        0, max_excess, f"teacher_{teacher}_day_{day}_daily_excess")
+                    self.model.Add(excess >= sum(period_indicators) - 5)
+                    self.teacher_daily_max_penalties.append((excess, -2))
+
+        print(f"    Added {len(self.teacher_daily_max_penalties)} teacher daily max penalty terms")

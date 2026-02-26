@@ -42,7 +42,7 @@ Output files are written to `output/`:
 src/
 ├── data.py         # All scheduling data: classes, courses, teachers, joint sessions, time constraints
 ├── models.py       # Dataclasses: Course, ClassGroup, JointSession, TimeSlot, ScheduleConfig
-├── constraints.py  # SchedulingConstraints class with all CP-SAT constraints (A-X categories)
+├── constraints.py  # SchedulingConstraints class with all CP-SAT constraints (A-Z categories)
 ├── solver.py       # ClassScheduleSolver: model building, solving, validation
 └── output.py       # ScheduleOutput: CSV/report generation, consecutive analysis
 ```
@@ -51,7 +51,7 @@ src/
 1. `data.py` defines all scheduling data (classes, courses, teachers, constraints) via getter functions
 2. `solver.py` creates CP-SAT boolean variables: `schedule[class, course, day, period]`
 3. `constraints.py` adds all constraint types to the model via `add_all_constraints()`
-4. Soft constraints are collected as `(var, weight)` tuples in `consecutive_pairs`, `daily_ap_indicators`, and `teacher_p1_penalties` lists
+4. Soft constraints are collected as `(var, weight)` tuples in `consecutive_pairs`, `daily_ap_indicators`, `teacher_p1_penalties`, `daily_ap_total_penalties`, and `teacher_daily_max_penalties` lists
 5. `solver.py:_add_objective_function()` combines soft constraints into a single `Maximize` objective
 6. `output.py` formats and exports the solution
 
@@ -77,10 +77,12 @@ Teachers are stored as strings. Multi-teacher courses use comma-separated values
 - **W**: Hard — if a class has 2 periods of the same course on the same day, they must be consecutive
 - **X**: Soft — each teacher should teach period 1 at most 3 times per week (-2 penalty per excess day)
 - **Y**: Soft — daily total AP periods (Group 1 + 2 + 3) should not exceed 4 (-2 penalty per excess period)
+- **Z**: Soft — each teacher should teach at most 5 periods per day (-2 penalty per excess period)
 
 ### Soft Constraints (Optimization Objectives)
 Located in `add_soft_constraints()` — uses weighted consecutive pair variables:
 - Cal-ABBC, Group AP, BC-Stats, AP Seminar: **+3** weight (prefer consecutive)
+- Art: **+2** weight (prefer consecutive)
 - English: **-1** weight (minimize consecutive)
 - Algebra, Pre-Cal: **-2** weight (avoid consecutive)
 
@@ -101,7 +103,7 @@ Located in `add_soft_constraints()` — uses weighted consecutive pair variables
 To add a new constraint:
 1. Add the constraint logic as a method in `SchedulingConstraints` (in `constraints.py`)
 2. Call the new method from `add_all_constraints()`
-3. If it's a soft constraint, append `(var, weight)` tuples to `self.consecutive_pairs`, `self.daily_ap_indicators`, or `self.teacher_p1_penalties`
+3. If it's a soft constraint, append `(var, weight)` tuples to the appropriate list (`consecutive_pairs`, `daily_ap_indicators`, `teacher_p1_penalties`, `daily_ap_total_penalties`, or `teacher_daily_max_penalties`) and collect them in `solver.py:_add_objective_function()`
 4. Update validation in `solver.py:validate_solution()` if needed
 5. Update `check_constraints.py` to verify the new constraint against CSV output
 

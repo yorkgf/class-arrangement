@@ -66,7 +66,7 @@
 | Psych&Geo | 3 | Chloe, Manuel |
 | Spanish | 2 | AK |
 | Pre-Cal | 5 | Dan |
-| Micro-Econ | 5 | Neil |
+| Micro-Econ | 5 | Shi |
 | Chemistry | 3 | Shao |
 | Phys&Bio | 3 | Song (10-A/10-B), Zhao (10-C) | 10-A+10-C联合上课 |
 | Art | 2 | Shiwen |
@@ -395,6 +395,7 @@ Shiwen教师同时教授：
 | 优化目标 | 课程 | 权重 | 说明 |
 |---------|------|------|------|
 | **最大化连排** (+3) | Cal-ABBC, Group 1/2/3 AP, BC-Stats, AP Seminar | +3 | 优先安排连排，形成2+2+1模式 |
+| **偏好连排** (+2) | Art | +2 | 尽量连排（每周2节） |
 | **最小化连排** (-1) | English | -1 | 尽量少连排，分散安排 |
 | **避免连排** (-2) | Algebra, Pre-Cal | -2 | 尽量不连排，每天最多1节 |
 
@@ -410,16 +411,36 @@ Shiwen教师同时教授：
 
 **理论最大值**: 4班级 × 5天 = 20个指标点
 
+### 6.3 每日AP课程总数限制（软约束Y）
+
+**Y. 每天AP课总数不超过4节**
+
+每天Group 1 AP + Group 2 AP + Group 3 AP的总节数不超过4节（AP为联合上课，以11-A为参考）。
+
+| 优化目标 | 权重 | 说明 |
+|---------|------|------|
+| **每天AP总数≤4** (-2) | -2/超出节数 | 每超出1节扣2分 |
+
+### 6.4 教师单日课时限制（软约束Z）
+
+**Z. 每位教师每天最多上5节课**
+
+对每位教师的每日实际授课节数进行统计（联合上课计为1节），超过5节的部分给予惩罚。
+
+| 优化目标 | 权重 | 说明 |
+|---------|------|------|
+| **教师单日≤5节** (-2) | -2/超出节数 | 每超出1节扣2分 |
+
 **当前解决方案连排情况（FEASIBLE）：**
 - **Cal-ABBC**: 11-A有2对连排，11-B有2对连排 [PASS]
 - **Group 1 AP**: 4个班级各有2对连排 [PASS]
 - **Group 2 AP**: 4个班级各有2对连排 [PASS]
 - **Group 3 AP**: 4个班级各有2对连排 [PASS]
 - **BC-Stats**: 12-A/B各有2对连排 [PASS]
-- **AP Seminar**: 无连排
-- **English**: 大部分无连排
-- **Algebra/Pre-Cal**: 少数有连排
-- **Art**: 各班级均未连排（优化权重较低）
+- **AP Seminar**: 12-A/B各有2对连排 [PASS]
+- **Art**: 全部8个班均连排 [PASS]
+- **English**: 11-A有2对连排，9-Eng各1对连排（受硬约束R限制，不可避免）
+- **Algebra/Pre-Cal**: 均无连排 [PASS]
 
 **每日AP课数量（软约束Q）：**
 - **11-A**: 每天2-4节AP课，全部满足≥2节 [PASS]
@@ -585,6 +606,9 @@ python main.py
 | U | 走班英语D/E与行政班9-C互斥 | constraints.py:1022-1055 |
 | V | 走班英语A/B/C与D/E不能同时（教师冲突） | constraints.py:1057-1085 |
 | 软约束优化 | 连排偏好/避免目标函数 | constraints.py:449-517 |
+| X | 教师第1节课每周≤3天（软约束） | constraints.py `add_teacher_period1_soft_constraint()` |
+| Y | 每日AP总数≤4节（软约束） | constraints.py `_add_daily_ap_total_soft_constraint()` |
+| Z | 教师单日≤5节课（软约束） | constraints.py `add_teacher_daily_max_soft_constraint()` |
 
 ---
 
@@ -619,6 +643,7 @@ python main.py
 | 3.4 | 2026-02-11 | 添加硬约束R：9年级每日课程限制（English 1天2节，Art 1天2节，其他每天1节） |
 | 3.5 | 2026-02-11 | 添加硬约束S：10年级每日课程限制（Art 1天2节，其他每天1节） |
 | 3.6 | 2026-02-24 | 实现9年级走班制英语系统：新增5个走班英语班(9-Eng-A/B/C/D/E)，行政班移除English课程；添加硬约束T/U/V：走班英语与行政班互斥、A/B/C组与D/E组教师冲突 |
+| 3.7 | 2026-02-26 | 添加软约束Y：每日AP总数≤4节(-2/超出节数)；添加Art连排软约束(+2权重)；更新Micro-Econ教师(Neil→Shi)；添加软约束Z：教师单日≤5节(-2/超出节数) |
 
 ---
 
