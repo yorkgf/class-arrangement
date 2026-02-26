@@ -1,35 +1,35 @@
 Day,Period,Course,Teacher
 Monday,1,BC-Stats,Yan
 Monday,2,BC-Stats,Yan
-Monday,3,Group 1 AP,"Guo,Zhao,Shiwen"
-Monday,4,Group 1 AP,"Guo,Zhao,Shiwen"
+Monday,3,Group 3 AP,"Chloe,Manuel"
+Monday,4,Group 3 AP,"Chloe,Manuel"
 Monday,5,Spanish,AK
-Monday,6,[Free],
-Tuesday,1,Group 2 AP,"Neil,Guo"
-Tuesday,2,Group 2 AP,"Neil,Guo"
-Tuesday,3,BC-Stats,Yan
-Tuesday,4,[Free],
-Tuesday,5,AP Seminar,"Ezio,Lucy,Darin"
-Tuesday,6,AP Seminar,"Ezio,Lucy,Darin"
+Monday,6,PE,Wen
+Tuesday,1,Group 3 AP,"Chloe,Manuel"
+Tuesday,2,AP Seminar,"Ezio,Lucy,Darin"
+Tuesday,3,AP Seminar,"Ezio,Lucy,Darin"
+Tuesday,4,Group 1 AP,"Guo,Zhao,Shiwen"
+Tuesday,5,Group 2 AP,"Neil,Guo"
+Tuesday,6,Group 2 AP,"Neil,Guo"
 Tuesday,7,PE,Wen
 Tuesday,8,Counseling,Wen
-Wednesday,1,Spanish,AK
-Wednesday,2,PE,Wen
-Wednesday,3,Group 1 AP,"Guo,Zhao,Shiwen"
-Wednesday,4,Group 1 AP,"Guo,Zhao,Shiwen"
-Wednesday,5,Group 3 AP,"Chloe,Manuel"
-Wednesday,6,BC-Stats,Yan
+Wednesday,1,Group 1 AP,"Guo,Zhao,Shiwen"
+Wednesday,2,Group 1 AP,"Guo,Zhao,Shiwen"
+Wednesday,3,AP Seminar,"Ezio,Lucy,Darin"
+Wednesday,4,AP Seminar,"Ezio,Lucy,Darin"
+Wednesday,5,Group 2 AP,"Neil,Guo"
+Wednesday,6,Group 2 AP,"Neil,Guo"
 Wednesday,7,BC-Stats,Yan
-Wednesday,8,Group 2 AP,"Neil,Guo"
-Thursday,1,Spanish,AK
-Thursday,2,[Free],
-Thursday,3,AP Seminar,"Ezio,Lucy,Darin"
-Thursday,4,AP Seminar,"Ezio,Lucy,Darin"
-Thursday,5,Group 3 AP,"Chloe,Manuel"
-Thursday,6,Group 3 AP,"Chloe,Manuel"
-Friday,1,Group 2 AP,"Neil,Guo"
-Friday,2,Group 2 AP,"Neil,Guo"
-Friday,3,AP Seminar,"Ezio,Lucy,Darin"
-Friday,4,Group 1 AP,"Guo,Zhao,Shiwen"
-Friday,5,Group 3 AP,"Chloe,Manuel"
-Friday,6,Group 3 AP,"Chloe,Manuel"
+Wednesday,8,BC-Stats,Yan
+Thursday,1,Group 3 AP,"Chloe,Manuel"
+Thursday,2,Group 3 AP,"Chloe,Manuel"
+Thursday,3,BC-Stats,Yan
+Thursday,4,[Free],
+Thursday,5,Spanish,AK
+Thursday,6,[Free],
+Friday,1,[Free],
+Friday,2,AP Seminar,"Ezio,Lucy,Darin"
+Friday,3,Spanish,AK
+Friday,4,Group 2 AP,"Neil,Guo"
+Friday,5,Group 1 AP,"Guo,Zhao,Shiwen"
+Friday,6,Group 1 AP,"Guo,Zhao,Shiwen"

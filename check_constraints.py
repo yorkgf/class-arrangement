@@ -182,6 +182,27 @@ if joint_violations:
 else:
     print('  [OK] All joint sessions synchronized')
 
+# Check Y: Daily AP total should not exceed 4
+print()
+print('Y: Daily AP total (Group 1 + 2 + 3) <= 4 per day (soft)')
+print('-' * 60)
+day_names_list = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+ap_courses = ['Group 1 AP', 'Group 2 AP', 'Group 3 AP']
+reference_class = '11-A'
+ap_excess_days = []
+for day_name in day_names_list:
+    total = 0
+    for course in ap_courses:
+        total += len(df[(df['Class'] == reference_class) & (df['Course'] == course) & (df['Day'] == day_name)])
+    status = '[OK]' if total <= 4 else '[EXCESS]'
+    if total > 4:
+        ap_excess_days.append(day_name)
+    print(f'  {day_name} ({reference_class}): {total} AP periods {status}')
+if ap_excess_days:
+    print(f'  WARNING: {len(ap_excess_days)} day(s) exceed 4 AP periods (soft constraint)')
+else:
+    print('  [OK] All days have <= 4 AP periods')
+
 print()
 print('=' * 80)
 print('SUMMARY')

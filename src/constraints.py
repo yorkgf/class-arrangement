@@ -531,6 +531,9 @@ class SchedulingConstraints:
         # AP classes include: Group 1 AP, Group 2 AP, Group 3 AP
         self._add_daily_ap_preference_constraint()
 
+        # Y. Soft constraint: Daily total AP periods should not exceed 4
+        self._add_daily_ap_total_soft_constraint()
+
     def _add_daily_ap_preference_constraint(self):
         """Q. Soft constraint: Prefer at least 2 AP classes per day.
         For each day, create an indicator if the class has >= 2 AP periods.
@@ -575,6 +578,45 @@ class SchedulingConstraints:
                     self.daily_ap_indicators.append((has_at_least_2_ap, 1))  # Weight +1
 
         print(f"    Added {len(self.daily_ap_indicators)} daily AP preference indicators")
+
+    def _add_daily_ap_total_soft_constraint(self):
+        """Y. Soft constraint: daily total AP periods (Group 1 + 2 + 3) should not exceed 4.
+        Since all AP groups are joint sessions (11-A/B, 12-A/B attend simultaneously),
+        counting for one reference class (11-A) suffices.
+        Penalizes each excess period beyond 4 with weight -2.
+        """
+        print("  Adding daily AP total soft constraint...")
+
+        ap_courses = ["Group 1 AP", "Group 2 AP", "Group 3 AP"]
+        reference_class = "11-A"  # All AP classes share the same joint schedule
+
+        self.daily_ap_total_penalties = []  # List of (excess_var, weight) tuples
+
+        if reference_class not in self.classes:
+            print("    Skipped: reference class 11-A not found")
+            return
+
+        for day in range(5):
+            max_period = 6 if day in [0, 3] else (8 if day in [1, 2] else 7)
+
+            # Collect all AP course variables for this day
+            ap_periods = []
+            for course_name in ap_courses:
+                for period in range(1, max_period + 1):
+                    if (day, period) in self.excluded_slots.get(reference_class, set()):
+                        continue
+                    key = (reference_class, course_name, day, period)
+                    if key in self.schedule_vars:
+                        ap_periods.append(self.schedule_vars[key])
+
+            if ap_periods:
+                # excess = max(0, total_ap - 4), penalize with -2 per excess period
+                excess = self.model.NewIntVar(
+                    0, 2, f"daily_ap_total_excess_day_{day}")
+                self.model.Add(excess >= sum(ap_periods) - 4)
+                self.daily_ap_total_penalties.append((excess, -2))
+
+        print(f"    Added {len(self.daily_ap_total_penalties)} daily AP total penalty terms")
 
     def _add_consecutive_indicator(self, class_name: str, course_name: str, weight: int):
         """Add indicator variables for consecutive periods with given weight."""

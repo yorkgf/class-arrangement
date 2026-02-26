@@ -9,7 +9,7 @@ High school class scheduling system using Google OR-Tools CP-SAT constraint solv
 ## Commands
 
 ```bash
-# Install dependencies
+# Install dependencies (ortools, pandas)
 pip install -r requirements.txt
 
 # Run the scheduler (default: 300s timeout)
@@ -23,6 +23,12 @@ python check_constraints.py
 
 # Check time slot feasibility before solving
 python check_feasibility.py
+
+# Debug: inspect variable counts, available slots, joint sessions
+python debug.py
+
+# Test: isolate Art/PE constraints to check feasibility
+python test_minimal.py
 ```
 
 Output files are written to `output/`:
@@ -70,6 +76,7 @@ Teachers are stored as strings. Multi-teacher courses use comma-separated values
 - **V**: Tracking English A/B/C vs D/E teacher conflict (LZY teaches A+E, Ezio teaches C+D)
 - **W**: Hard — if a class has 2 periods of the same course on the same day, they must be consecutive
 - **X**: Soft — each teacher should teach period 1 at most 3 times per week (-2 penalty per excess day)
+- **Y**: Soft — daily total AP periods (Group 1 + 2 + 3) should not exceed 4 (-2 penalty per excess period)
 
 ### Soft Constraints (Optimization Objectives)
 Located in `add_soft_constraints()` — uses weighted consecutive pair variables:
@@ -100,7 +107,7 @@ To add a new constraint:
 
 ## Troubleshooting
 
-- **INFEASIBLE**: Run `check_feasibility.py` first to find time slot availability issues
+- **INFEASIBLE**: Run `check_feasibility.py` first to find time slot availability issues. Use `debug.py` to inspect variable counts and slot availability. Use `test_minimal.py` to isolate which constraint group causes infeasibility.
 - **Slow solving**: Increase `time_limit_seconds` arg to `main.py` or simplify constraints
 - **Constraint violations**: Run `check_constraints.py` after solving to identify specific issues
-- **REQUIREMENTS.md**: Contains the full specification in Chinese with all constraint details and verification results
+- **REQUIREMENTS.md**: Contains the full specification in Chinese (中文) with all constraint details, verification results, and version history

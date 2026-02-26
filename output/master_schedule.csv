@@ -1,0 +1,36 @@
+﻿Day,Period,9-A,9-B,9-C,9-Eng-A,9-Eng-B,9-Eng-C,9-Eng-D,9-Eng-E,10-A,10-B,10-C,10-EAL-A,10-EAL-B,10-EAL-C,11-A,11-B,12-A,12-B
+周一,1,Physics,Art,Social,,,,,,Psych&Geo,Psych&Geo,Psych&Geo,EAL,EAL,EAL,PE,Spanish,BC-Stats,BC-Stats
+周一,2,Psychology,Physics,Chemistry,,,,,,Phys&Bio,Micro-Econ,Phys&Bio,,,EAL,Literature,Art,BC-Stats,BC-Stats
+周一,3,,,Algebra,English,English,English,,,English,Pre-Cal,Micro-Econ,,,,Group 3 AP,Group 3 AP,Group 3 AP,Group 3 AP
+周一,4,,,PE,English,English,English,,,Pre-Cal,World History,English,,,,Group 3 AP,Group 3 AP,Group 3 AP,Group 3 AP
+周一,5,Social,Algebra,,,,,English,English,World History,PE,Pre-Cal,,,,Cal-ABBC,Literature,Spanish,
+周一,6,Algebra,Chemistry,,,,,English,English,Micro-Econ,English,Art,,,,Cal-ABBC,English,PE,Spanish
+周二,1,,,Physics,English,English,English,,,English,Pre-Cal,Chemistry,,,,Group 3 AP,Group 3 AP,Group 3 AP,Group 3 AP
+周二,2,Algebra,Biology,Psychology,,,,,,Pre-Cal,Micro-Econ,PE,,,,English,Cal-ABBC,AP Seminar,AP Seminar
+周二,3,Physics,Art,Algebra,,,,,,Micro-Econ,Chemistry,Pre-Cal,,,,English,Cal-ABBC,AP Seminar,AP Seminar
+周二,4,Psychology,Chemistry,Geography,,,,,,PE,Spanish,Micro-Econ,,,,Group 1 AP,Group 1 AP,Group 1 AP,Group 1 AP
+周二,5,Art,Algebra,,,,,English,English,Chemistry,PE,English,,,,Group 2 AP,Group 2 AP,Group 2 AP,Group 2 AP
+周二,6,PE,Social,Art,,,,,,Phys&Bio,English,Phys&Bio,,,EAL,Group 2 AP,Group 2 AP,Group 2 AP,Group 2 AP
+周二,7,,,,,,,,,,,,,,,Art,English,PE,PE
+周二,8,,,,,,,,,,,,,,,Spanish,Literature,Counseling,Counseling
+周三,1,Chemistry,Social,Algebra,,,,,,World History,Pre-Cal,Spanish,,,,Group 1 AP,Group 1 AP,Group 1 AP,Group 1 AP
+周三,2,,,Social,English,English,English,,,English,Micro-Econ,Chemistry,,,,Group 1 AP,Group 1 AP,Group 1 AP,Group 1 AP
+周三,3,Geography,Algebra,Chemistry,,,,,,Spanish,Phys&Bio,Micro-Econ,,,,English,Art,AP Seminar,AP Seminar
+周三,4,Biology,PE,Psychology,,,,,,Pre-Cal,Art,World History,,,,English,Cal-ABBC,AP Seminar,AP Seminar
+周三,5,Algebra,Psychology,,,,,English,English,Chemistry,Art,Pre-Cal,,,,Group 2 AP,Group 2 AP,Group 2 AP,Group 2 AP
+周三,6,Psychology,Chemistry,Art,,,,,,Phys&Bio,English,Phys&Bio,,,EAL,Group 2 AP,Group 2 AP,Group 2 AP,Group 2 AP
+周三,7,PE,Physics,Biology,,,,,,Psych&Geo,Psych&Geo,Psych&Geo,EAL,EAL,EAL,Art,Spanish,BC-Stats,BC-Stats
+周三,8,Social,Geography,Physics,,,,,,Micro-Econ,Chemistry,English,,,,Spanish,English,BC-Stats,BC-Stats
+周四,1,Biology,Algebra,PE,,,,,,Micro-Econ,Phys&Bio,English,,,,Group 3 AP,Group 3 AP,Group 3 AP,Group 3 AP
+周四,2,,,Physics,English,English,English,,,English,Pre-Cal,World History,,,,Group 3 AP,Group 3 AP,Group 3 AP,Group 3 AP
+周四,3,Social,Biology,,,,,English,English,PE,World History,Art,,,,Literature,Spanish,BC-Stats,BC-Stats
+周四,4,Physics,Psychology,Social,,,,,,Art,Chemistry,Micro-Econ,,,,Spanish,PE,,
+周四,5,Chemistry,Social,Algebra,,,,,,World History,English,Pre-Cal,,,,Cal-ABBC,Literature,Spanish,
+周四,6,Algebra,Geography,Biology,,,,,,Pre-Cal,Micro-Econ,Chemistry,,,,Cal-ABBC,English,,Spanish
+周五,1,Art,Biology,,,,,English,English,Pre-Cal,English,Micro-Econ,,,,Literature,PE,,Spanish
+周五,2,Algebra,PE,Psychology,,,,,,Art,Micro-Econ,Pre-Cal,,,,English,Cal-ABBC,AP Seminar,AP Seminar
+周五,3,Biology,Algebra,Social,,,,,,Psych&Geo,Psych&Geo,Psych&Geo,EAL,EAL,EAL,PE,Cal-ABBC,Spanish,PE
+周五,4,Social,Psychology,Biology,,,,,,Chemistry,Phys&Bio,Spanish,,,,Group 2 AP,Group 2 AP,Group 2 AP,Group 2 AP
+周五,5,,,Geography,English,English,English,,,English,Pre-Cal,World History,,,,Group 1 AP,Group 1 AP,Group 1 AP,Group 1 AP
+周五,6,Chemistry,Social,Algebra,,,,,,Spanish,World History,English,,,,Group 1 AP,Group 1 AP,Group 1 AP,Group 1 AP
+周五,7,Geography,Physics,Chemistry,,,,,,Micro-Econ,Spanish,PE,,,,Cal-ABBC,English,,
