@@ -59,28 +59,36 @@ src/
 Teachers are stored as strings. Multi-teacher courses use comma-separated values (e.g., `"Yan,Song"`, `"Ezio,Lucy,Darin"`). Use `Course.get_teachers()` to split into a list.
 
 ### Key Constraint Categories (in constraints.py)
+All constraints are added via `add_all_constraints()`. Hard constraints:
 - **A**: Basic (course hours, one course per slot)
 - **B**: Joint sessions (synchronized multi-class courses)
 - **C**: Teacher conflicts (same teacher can't teach two classes simultaneously)
-- **D-K**: Cross-grade teacher conflicts (English teachers, Guo, Darin, etc.)
+- **D**: English teacher conflicts — **currently disabled** in `add_all_constraints()` (replaced by individual constraints H-N)
 - **E3/E4**: EAL synchronization — E3: `Psych&Geo ⇒ EAL` (implication); E4: 10-EAL-C has exactly 3 periods overlapping with 10-A/10-C Phys&Bio
+- **F**: Daily course limits (max 1 period/day for courses with ≤5 weekly hours, special rules per grade)
 - **H**: 11-A English syncs with 12-A/B AP Seminar
 - **I**: Lucy conflict (AP Seminar vs 10th English)
-- **L-N**: 9-Eng-A/10-A English synchronization and conflict constraints
+- **J**: Guo conflict (Group 1/2 AP vs 9th Physics)
+- **K**: Darin conflict (AP Seminar vs 9th Social)
+- **L**: 9-Eng-A/B/C English ⇒ 10-A English (implication sync)
+- **M**: 9-Eng-A/B/C English vs 11-A/B Literature conflict
+- **N**: 9-Eng-A/B/C English vs 12-A/B AP Seminar conflict
 - **O**: Group 2 AP requires 10-A Chemistry/Phys&Bio overlap
 - **P**: Art vs Group 1 AP conflict (Shiwen teaches both)
-- **Q**: Soft — daily AP course optimization (+1 weight per day with >=2 AP courses)
 - **R/S**: Per-grade daily course limits (9th grade and 10th grade)
 - **T**: Tracking English A/B/C vs admin class 9-A/9-B mutual exclusion
 - **U**: Tracking English D/E vs admin class 9-C mutual exclusion
 - **V**: Tracking English A/B/C vs D/E teacher conflict (LZY teaches A+E, Ezio teaches C+D)
-- **W**: Hard — if a class has 2 periods of the same course on the same day, they must be consecutive
-- **X**: Soft — each teacher should teach period 1 at most 3 times per week (-2 penalty per excess day)
-- **Y**: Soft — daily total AP periods (Group 1 + 2 + 3) should not exceed 4 (-2 penalty per excess period)
-- **Z**: Soft — each teacher should teach at most 5 periods per day (-2 penalty per excess period)
+- **W**: Same-day consecutive — if a class has 2 periods of the same course on the same day, they must be consecutive
 
-### Soft Constraints (Optimization Objectives)
-Located in `add_soft_constraints()` — uses weighted consecutive pair variables:
+Soft constraints (optimization):
+- **G**: Consecutive pair preferences (called from within `add_all_constraints()` via `add_soft_constraints()`)
+- **Q**: Daily AP course preference (+1 weight per day with ≥2 AP courses)
+- **X**: Teacher period-1 limit (-2 penalty per excess day above 3/week)
+- **Y**: Daily total AP periods (Group 1 + 2 + 3) should not exceed 4 (-2 penalty per excess period)
+- **Z**: Teacher daily max — each teacher should teach at most 5 periods per day (-2 penalty per excess period)
+
+### Soft Constraint Weights
 - Cal-ABBC, Group AP, BC-Stats, AP Seminar: **+3** weight (prefer consecutive)
 - Art: **+2** weight (prefer consecutive)
 - English: **-1** weight (minimize consecutive)
@@ -98,6 +106,8 @@ Located in `add_soft_constraints()` — uses weighted consecutive pair variables
 
 **Time Configuration**: Mon=6, Tue=8, Wed=8, Thu=6, Fri=7 periods (35 total). Days are 0-indexed (0=Mon). Periods are 1-indexed.
 
+**Excluded/Required Slots**: 9th/10th grade excluded from Tue periods 7-8; 12th grade excluded from Fri period 7. 12th grade has required PE (Tue-7) and Counseling (Tue-8).
+
 ## Modifying Constraints
 
 To add a new constraint:
@@ -111,5 +121,5 @@ To add a new constraint:
 
 - **INFEASIBLE**: Run `check_feasibility.py` first to find time slot availability issues. Use `debug.py` to inspect variable counts and slot availability. Use `test_minimal.py` to isolate which constraint group causes infeasibility.
 - **Slow solving**: Increase `time_limit_seconds` arg to `main.py` or simplify constraints
-- **Constraint violations**: Run `check_constraints.py` after solving to identify specific issues
+- **Constraint violations**: Run `check_constraints.py` after solving to identify specific issues (requires pandas)
 - **REQUIREMENTS.md**: Contains the full specification in Chinese (中文) with all constraint details, verification results, and version history
